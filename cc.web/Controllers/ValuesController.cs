@@ -32,6 +32,7 @@ namespace cc.web.Controllers
                     purviews.Add(new Purview()
                     {
                         PurviewId = Convert.ToInt32(row["purview_id"]),
+                        Memo = row["memo"] == DBNull.Value ? "" : row["memo"].ToString(),
                         PurviewName = row["purview_name"].ToString()
                     });
                 }
@@ -73,13 +74,15 @@ namespace cc.web.Controllers
     {
         public int PurviewId { get; set; }
         public string PurviewName { get; set; }
+
+        public string Memo { get; set; }
     }
 
     public class TableResult
     {
         public int code { get; set; }
 
-        public int count {get;set;}
+        public int count { get; set; }
         public List<Purview> data { get; set; }
     }
 }
