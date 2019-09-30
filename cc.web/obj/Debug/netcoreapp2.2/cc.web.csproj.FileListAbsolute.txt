@@ -1,0 +1,14 @@
+E:\wala\cc\cc.web\bin\Debug\netcoreapp2.2\cc.web.deps.json
+E:\wala\cc\cc.web\bin\Debug\netcoreapp2.2\cc.web.runtimeconfig.json
+E:\wala\cc\cc.web\bin\Debug\netcoreapp2.2\cc.web.runtimeconfig.dev.json
+E:\wala\cc\cc.web\bin\Debug\netcoreapp2.2\cc.web.dll
+E:\wala\cc\cc.web\bin\Debug\netcoreapp2.2\cc.web.pdb
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.csprojAssemblyReference.cache
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.csproj.CoreCompileInputs.cache
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.RazorAssemblyInfo.cache
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.RazorAssemblyInfo.cs
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.AssemblyInfoInputs.cache
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.AssemblyInfo.cs
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.RazorTargetAssemblyInfo.cache
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.dll
+E:\wala\cc\cc.web\obj\Debug\netcoreapp2.2\cc.web.pdb
