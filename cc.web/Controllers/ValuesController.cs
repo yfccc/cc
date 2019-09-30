@@ -14,9 +14,9 @@ namespace cc.web.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Purview>> Get()
+        public ActionResult<TableResult> Get()
         {
-            var connStr = "Host=10.2.1.97;Port=5432;Username=postgres;Password=123456;Database=postgres";
+            var connStr = "Host=10.2.1.97;Port=5432;Username=postgres;Password=123456;Database=irisNewAttend-100";
             NpgsqlConnection conn = new NpgsqlConnection(connStr);
             conn.Open();
             NpgsqlDataAdapter adapter = new NpgsqlDataAdapter("select * from purview;", conn);
@@ -36,7 +36,12 @@ namespace cc.web.Controllers
                     });
                 }
             }
-            return purviews;
+            return new TableResult()
+            {
+                code = 0,
+                count = purviews.Count(),
+                data = purviews
+            };
         }
 
         // GET api/values/5
@@ -68,5 +73,13 @@ namespace cc.web.Controllers
     {
         public int PurviewId { get; set; }
         public string PurviewName { get; set; }
+    }
+
+    public class TableResult
+    {
+        public int code { get; set; }
+
+        public int count {get;set;}
+        public List<Purview> data { get; set; }
     }
 }
