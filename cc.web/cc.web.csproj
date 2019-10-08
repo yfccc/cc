@@ -11,4 +11,9 @@
     <PackageReference Include="Npgsql" Version="4.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\cc.bll\cc.bll.csproj" />
+    <ProjectReference Include="..\cc.models\cc.models.csproj" />
+  </ItemGroup>
+
 </Project>

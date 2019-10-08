@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
 using System.Data;
+using cc.models;
+using cc.bll;
 
 namespace cc.web.Controllers
 {
@@ -16,33 +18,8 @@ namespace cc.web.Controllers
         [HttpGet]
         public ActionResult<TableResult> Get()
         {
-            var connStr = "Host=10.2.1.97;Port=5432;Username=postgres;Password=123456;Database=irisNewAttend-100";
-            NpgsqlConnection conn = new NpgsqlConnection(connStr);
-            conn.Open();
-            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter("select * from purview;", conn);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            conn.Close();
-            List<Purview> purviews = new List<Purview>();
-            if (dt != null)
-            {
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    purviews.Add(new Purview()
-                    {
-                        PurviewId = Convert.ToInt32(row["purview_id"]),
-                        Memo = row["memo"] == DBNull.Value ? "" : row["memo"].ToString(),
-                        PurviewName = row["purview_name"].ToString()
-                    });
-                }
-            }
-            return new TableResult()
-            {
-                code = 0,
-                count = purviews.Count(),
-                data = purviews
-            };
+            DataHandler dataHandler = new DataHandler();
+            return dataHandler.GetList<TableResult>();
         }
 
         // GET api/values/5
@@ -69,20 +46,5 @@ namespace cc.web.Controllers
         public void Delete(int id)
         {
         }
-    }
-    public class Purview
-    {
-        public int PurviewId { get; set; }
-        public string PurviewName { get; set; }
-
-        public string Memo { get; set; }
-    }
-
-    public class TableResult
-    {
-        public int code { get; set; }
-
-        public int count { get; set; }
-        public List<Purview> data { get; set; }
     }
 }
