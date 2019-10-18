@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>虹膜识别</title>
+    <link rel="stylesheet"  href="/layui/layui/css/layui.css">
+    <link  rel="stylesheet"  href="/css/tools.css">
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <script language="javascript1.1" for="Biometrics" event="OnNofitfyStatusStr(param1)" type="text/javascript">
+        OnNofitfyStatusStr(param1); // 获取中文设备提示
+    </script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyStatus(param1)" type="text/javascript">
+        OnNotifyStatus(param1); // 获取设备状态码
+    </script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyCaptureTime(param1)" type="text/javascript">
+        /*    OnNotifyCaptureTime(param1); //也可直接写操作代码*/
+    </script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyQualityScore(PercentVisibleL, QualityScoreL, PercentVisibleR, QualityScoreR)" type="text/javascript">
+        OnNotifyQualityScore(PercentVisibleL, QualityScoreL, PercentVisibleR, QualityScoreR); //也可直接写操作代码
+    </script>
+
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyImage(nWorkMode, nImageNum, ulTimeStamp, bLeftEye, bRightEye, strLetImage, strRightImage,  strLeftImageJPG, strRightImageJPG)" type="text/javascript">
+        OnNotifyImage(nWorkMode, nImageNum, ulTimeStamp, bLeftEye, bRightEye, strLetImage, strRightImage,  strLeftImageJPG, strRightImageJPG);
+    </script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyCaptureTime(param1)" type="text/javascript">
+        OnNotifyCaptureTime(param1); //也可直接写操作代码
+    </script>
+    <!--    <script language="javascript1.1" for="Biometrics"
+                event="OnNofityTemlate(nWorkMode, nImageNum, ulTimeStamp, bLeftEye, bRightEye, strLetImage, strRightImage)"
+                type="text/javascript">
+            templates(nWorkMode, nImageNum, ulTimeStamp, bLeftEye, bRightEye, strLetImage, strRightImage); // 获取虹膜特征信息
+        </script>-->
+    <style>
+        .layui-btn-disabled, .layui-btn-disabled:active, .layui-btn-disabled:hover{
+            border: 0px;
+        }
+        label{
+            width: 30px !important;
+            text-align: left !important;
+            margin-right: 5px !important;
+            padding: 0px !important;
+            line-height: 36px !important;
+        }
+        #sbjg-sjh2{
+            width: 100% !important;
+            margin-left:0px !important; 
+        }
+        .lableWidth{
+            margin-left: 16px;
+        }
+        .imgPrent{
+            background: url("/img/irisPic.jpg");
+        }
+    </style>
+</head>
+<body  id="body" style="background:#fff;overflow-x:hidden;" >
+        <div class="layui-row" >
+            <div style="width: 97%; height: 100%; margin: 0 auto;position: relative">
+                <div class="layui-form-item" style="padding: 5px 0px ;margin-bottom: 0px">
+                    <div class="layui-input-block" id="sbjg-sjh2" style="margin-left: auto;">
+                        <form class="layui-form"   action=""   lay-filter="identify-iris-form-filter">
+                                <span class="inputSpan">正常</span>
+                                <label class="layui-form-label" >左眼</label>
+                                <div class="layui-form-block"  style="width: 200px;float: left;">
+                                    <select name="leftEye" id="leftEye"   lay-filter="leftEye" style="position: absolute;left: 0px;">
+                                        <option value="0">正常</option>
+                                        <option value="1">残缺</option>
+                                        <option value="2">系统设置不采集</option>
+                                        <option value="3">受伤未采集</option>
+                                        <option value="9">其他缺失情况</option>
+                                    </select>
+                                </div>
+                                <label class="layui-form-label lableWidth"   id="reght_lable">右眼</label>
+                                <div class="layui-form-block"  id="reght_select"   style="width: 200px;float: left;padding-right:0px;padding-left: 0px; ">
+                                    <select name="rightEye" id="rightEye" lay-filter="rightEye"  style="float: left;width:200px">
+                                        <option value="0">正常</option>
+                                        <option value="1">残缺</option>
+                                        <option value="2">系统设置不采集</option>
+                                        <option value="3">受伤未采集</option>
+                                        <option value="9">其他缺失情况</option>
+                                    </select>
+                                </div>
+                            <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="identify-start-filter" id="identiry-start-id" style="float: right; margin-right: 0px;">开始采集</button>
+                            <button class="layui-btn layui-btn-danger layui-btn-disabled" lay-submit="" id="force-id" lay-filter="identify-force-filter" style="float: right; margin-right: 18px;" disabled>强制采集</button>
+                            <div id="tishi" style="height: 36px;text-align: center; line-height: 36px; float: right;"></div>
+                        </form>
+                    </div>
+                </div>
+                <div  class="OBJECTPrent"   id="OBJECTPrent"  style="background: #333333;height:249px;display: none;width:100%;">
+                    <OBJECT classid="clsid:42F4A906-EDA3-4130-A507-0B90CDFF11BA"   id="Biometrics"  height="251"  style="margin-top:50px;position: absolute;top:20px;left:0px;z-index: 0"  width="100%" ></OBJECT>
+                </div>
+                <div  class="imgPrent"   id="imgPrent" style="height: 252px;width:100%;display:block;">
+                    <!-- <img id="sbjg-eye-po" src="/img/irisPic.jpg" style="width: 100%;height: 100%;float: left;"> -->
+                </div>
+            </div>
+            <div style="position: fixed; bottom: 0; left: 0; width: 100%; border-top: 1px solid rgb(228, 228, 228); padding: 8px 0;overflow: hidden;background: #fff">
+                <button class="layui-btn layui-btn-primary" id="identify-iris-close" style="float: right; margin-right: 2%; width: 100px; height: 33px; line-height: 32px;">取消</button>
+            </div>
+        </div>
+</body>
+<script src="/layui/layui/layui.js"></script>
+<script src="/script/layui_config.js"></script>
+<script src="/script/identify/identify_iris.js"></script>
+</html>

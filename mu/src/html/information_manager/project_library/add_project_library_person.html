@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>专题库人员管理</title>
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        ul {
+            margin: 0px;
+            list-style: none;
+            padding: 0px;
+        }
+
+        .menu {
+            width: 100%;
+            float: left;
+            height: 481px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            overflow-y: auto;
+        }
+
+        .title {
+            background: #F5F5F5;
+            height: 50px !important;
+            line-height: 50px !important;
+            border-top: 1px solid #E9E9E9 !important;
+        }
+
+        .item {
+            color: #999999;
+        }
+
+        .icon {
+            color: #2F4056;
+        }
+
+        .right {
+            margin-left: 20px;
+            margin-right: 8%;
+            float: right;
+        }
+
+        .menu li {
+            width: 98%;
+            height: 38px;
+            border: 1px solid #E9E9E9;
+            border-top: none;
+            color: #666;
+            font-size: 14px;
+            line-height: 38px;
+            text-indent: 20px
+        }
+
+        .menu li span {
+            color: #666;
+            font-size: 14px;
+            display: inline-block;
+            vertical-align: middle;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .menu li span.item {
+            width: 65%;
+            border-right: 1px solid #E9E9E9;
+        }
+
+        .menu li span.icon {
+            width: 25%;
+            color: #0079FE;
+            text-align: center;
+        }
+
+        .menu li span.iconhover {
+            cursor: pointer;
+        }
+
+        .title #clear {
+            width: 53px;
+            color: #0079FE;
+            float: right;
+            text-indent: 0px;
+        }
+
+        #clear:hover {
+            cursor: pointer;
+        }
+
+        .layui-fluid {
+            padding: 0px 7px 0px 0px !important;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="sub-title">
+        <span>选择人员</span>
+    </div>
+    <div class="layui-fluid" style="margin-bottom: 10px">
+        <div class="layui-row">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-tab layui-tab-brief" lay-filter="component-tabs-brief">
+                        <div class="layui-tab-content" style="padding:7px 0px 0px 0px">
+                            <div class="layui-tab-item layui-show" id="formDiv">
+                                <form class="layui-form" action="" id="add_pro_per_form"
+                                    lay-filter="component-form-group" style="margin-top:-5px">
+
+                                    <div class="layui-form-item" style="margin-bottom:0px">
+
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">姓名：</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" id="bcjr_xm" name="XM" autocomplete="off"
+                                                    onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                                    maxlength="50" class="layui-input">
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan">请选择</span>
+                                            <label class="layui-form-label">人员分类：</label>
+                                            <div class="layui-input-inline selectlayui-input-block">
+                                                <select name="RYFL" id="bcjr_ryfl" lay-search>
+                                                    <option value="" selected="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan">请选择</span>
+                                            <label class="layui-form-label">性别：</label>
+                                            <div class="layui-input-inline selectlayui-input-block">
+                                                <select name="XBDM" id="bcjr_xb" lay-search>
+                                                    <option value="" selected="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan">请选择</span>
+                                            <label class="layui-form-label">国籍：</label>
+                                            <div class="layui-input-inline selectlayui-input-block">
+                                                <select name="GJDM" id="bcjr_gj" lay-search>
+                                                    <option value="" selected="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan">请选择</span>
+                                            <label class="layui-form-label">民族：</label>
+                                            <div class="layui-input-inline selectlayui-input-block">
+                                                <select name="MZDM" id="bcjr_mz" lay-search>
+                                                    <option value="" selected="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan">请选择</span>
+                                            <label class="layui-form-label">证件类型：</label>
+                                            <div class="layui-input-inline selectlayui-input-block">
+                                                <select name="ZJLXDM" id="bcjr_zjlxdm" lay-search>
+                                                    <option value="" selected="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="layui-inline">
+                                            <label class="layui-form-label">证件号：</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" id="s_id" name="ZJHM" autocomplete="off"
+                                                    class="layui-input"
+                                                    onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                                    maxlength="50">
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan  qssj">请选择起止时间</span>
+                                            <label class="layui-form-label">采集时间：</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" class="layui-input" autocomplete="off"
+                                                    id="test-laydate-range-date" placeholder="请选择起止时间">
+                                            </div>
+                                        </div>
+                                        <div class="layui-inline postion">
+                                            <span class="inputSpan">请选择</span>
+                                            <label class="layui-form-label">设备类型：</label>
+                                            <div class="layui-input-inline selectlayui-input-block">
+                                                <select name="SBLXDM" id="SBLXDM" lay-search>
+                                                    <option value="" selected="">请选择</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br></br>
+                                        <div id="subDIV" style="float: left">
+                                            <button class="layui-btn download" lay-submit
+                                                lay-filter="add_project_person_filter" type="button">查询</button>
+                                            <button type="button" id="add_pro_per_reset_btn"
+                                                class="layui-btn layui-btn-primary">重置</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row">
+            <div class="layui-card" style="box-shadow: 0 0 0 0;margin-top: 16px;    margin-bottom: 72px;">
+                <div class="layui-row layui-col-space15" style=overflow:hidden;">
+                    <div class="layui-col-md12   tablePaddingBottom">
+                        <div class="layui-card-body" id="box_height">
+                            <div class="layui-row">
+                                <div class="layui-col-xs9">
+                                    <!--table表格-->
+                                    <div class="layui-fluid  table-layui-fluid" id="bottom_table"
+                                        style="padding:0px 0px 10px 10px">
+                                        <table class="layui-hide" id="person_add_library"
+                                            lay-filter="person_add_library_filter" style="overflow:hidden;">
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs3">
+                                    <ul class="menu">
+                                        <li class="title">已选（0）</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="layui-row" style="text-align: right;">
+                                <a href="./project_person_manage.html" class="layui-btn layui-btn-xm ">返回</a>
+                                <button id="submit" class="layui-btn layui-btn-xm ">确定</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-layout-admin">
+        <div class="layui-footer" style="left: 0;z-index: 102;padding: 0px;height: 64px;">
+            <div style="line-height: 64px;">
+                <button id="submit" class="layui-btn"
+                    style="width: 140px; height: 40px;background-color: #2F4056;">提交</button>
+                <a id="cancel_person" class="layui-btn layui-btn-primary" href="./project_person_manage.html"
+                    style="width: 140px; height: 40px;">返回</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="row_opt">
+        <a href="javascript:" lay-event="opt" style="color:#1E9FFF;cursor:pointer;margin-left:5px;">新增</a>
+    </script>
+    <script type="text/html" id="head_opt">
+        <button class="layui-btn layui-btn-sm download" lay-event="select">批量新增</button>
+    </script>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/information_manager/project_library/add_project_library_person.js"></script>
+</body>
+
+</html>

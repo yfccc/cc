@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>人员信息查看二级页面</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+        .left-container-title,
+        .right-container-title {
+            height: 40px;
+            line-height: 40px;
+            /* padding-left: 300px; */
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .layui-form-item>label {
+            width: 120px;
+            padding: 0;
+        }
+        .layui-form-item>div {
+            margin-left: 95px;
+        }
+        h3{
+            color:rgb(0, 121, 254);
+        }
+        .colorchange{
+            color: red;
+        }
+        .havecard{
+            color:#1ABC9C;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="sub-title">
+        <span style="display: inline-block;width:115px;">人员信息查看</span>
+        <div id="operate_type" style="display: inline-block;color: blue;">
+            
+        </div>
+        <a style="border:1px solid #1E9FFF;color:#1E9FFF;background: #fff;height: 27px;line-height: 27px;float:right;" id="cancel_personhistorlcal" href="./person_historical_record.html" class="layui-btn" lay-event="cancel">返回</a>
+    </div>
+
+    <div class="layui-fluid" style="margin-bottom:10px;">
+        <div class="layui-card" style="max-width: 1280px;">
+            <div class="layui-card-body ">
+
+                <div class="layui-row">
+                    <div class="layui-layer-content left-container layui-col-xs6" style="border:1px solid #ccc;">
+                        <div class="left-container-content">
+                            <div class="left-container-title" id="aaa">
+                                <h3>操作前</h3>
+                            </div>
+                            <div class="layui-form-item left-top-padding">
+                                <label class="layui-form-label">身份证头像：</label>
+                                <div style="width:120px;display: inline-block;">
+                                    <img id="original_imageCard" src="/img/card-img.png" style="width:120px;height:140px;">
+                                </div>
+                            </div>
+                            <div class="left-content-infolist">
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">姓名：</label>
+                                    <div class="layui-input-block" id="original_name">aaa</div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件类型：</label>
+                                    <div class="layui-input-block" id="original_type"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件号：</label>
+                                    <div class="layui-input-block" id="original_number"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">性别：</label>
+                                    <div class="layui-input-block" id="original_gender"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">出生日期：</label>
+                                    <div class="layui-input-block" id="original_birthday"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">国籍：</label>
+                                    <div class="layui-input-block" id="original_nationality">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">民族：</label>
+                                    <div class="layui-input-block" id="original_nation"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">户籍地址：</label>
+                                    <div class="layui-input-block" id="original_address"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件签发机构：</label>
+                                    <div class="layui-input-block" id="original_authority"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件有效期：</label>
+                                    <div class="layui-input-block" id="original_effective"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">新居住地址：</label>
+                                    <div class="layui-input-block" id="original_nowaddress"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">手机号：</label>
+                                    <div class="layui-input-block" id="original_phone"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">其他联系电话：</label>
+                                    <div class="layui-input-block" id="original_otherphone"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">人员分类：</label>
+                                    <div class="layui-input-block" id="original_persontype"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">虹膜信息：</label>
+                                    <div class="layui-input-block irisdata" id="original_irisdata"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件标志：</label>
+                                    <div class="layui-input-block papersmark" id="original_papersmark"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集点：</label>
+                                    <div class="layui-input-block" id="original_collectaddress">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集编号：</label>
+                                    <div class="layui-input-block" id="original_collectnumber">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集人：</label>
+                                    <div class="layui-input-block" id="original_collectperson">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集时间：</label>
+                                    <div class="layui-input-block" id="original_collecttime">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集备注：</label>
+                                    <div class="layui-input-block" id="original_collectmemo">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">修改人：</label>
+                                    <div class="layui-input-block" id="original_modifyperson">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">最后修改时间：</label>
+                                    <div class="layui-input-block" id="original_modifytime"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">修改原因：</label>
+                                    <div class="layui-input-block" id="original_modifyreason">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-layer-content right-container layui-col-xs6" style="border:1px solid #ccc;">
+                        <div class="right-container-content">
+                            <div class="right-container-title">
+                                <h3>操作后</h3>
+                            </div>
+                            <div class="layui-form-item left-top-padding">
+                                <label class="layui-form-label">身份证头像：</label>
+                                <div style="width:120px;display: inline-block;">
+                                    <img id="present_imageCard" src="/img/card-img.png" style="width:120px;height:140px;">
+                                </div>
+                            </div>
+                            <div class="right-content-infolist">
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">姓名：</label>
+                                    <div class="layui-input-block" id="present_name">aaa</div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件类型：</label>
+                                    <div class="layui-input-block" id="present_type"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件号：</label>
+                                    <div class="layui-input-block" id="present_number"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">性别：</label>
+                                    <div class="layui-input-block" id="present_gender"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">出生日期：</label>
+                                    <div class="layui-input-block" id="present_birthday"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">国籍：</label>
+                                    <div class="layui-input-block" id="present_nationality"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">民族：</label>
+                                    <div class="layui-input-block" id="present_nation"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">户籍地址：</label>
+                                    <div class="layui-input-block" id="present_address"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件签发机构：</label>
+                                    <div class="layui-input-block" id="present_authority"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件有效期：</label>
+                                    <div class="layui-input-block" id="present_effective"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">新居住地址：</label>
+                                    <div class="layui-input-block" id="present_nowaddress"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">手机号：</label>
+                                    <div class="layui-input-block" id="present_phone"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">其他联系电话：</label>
+                                    <div class="layui-input-block" id="present_otherphone"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">人员分类：</label>
+                                    <div class="layui-input-block" id="present_persontype"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">虹膜信息：</label>
+                                    <div class="layui-input-block irisdata" id="present_irisdata"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">证件标志：</label>
+                                    <div class="layui-input-block papersmark" id="present_papersmark"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集点：</label>
+                                    <div class="layui-input-block" id="present_collectaddress">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集编号：</label>
+                                    <div class="layui-input-block" id="present_collectnumber">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集人：</label>
+                                    <div class="layui-input-block" id="present_collectperson">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集时间：</label>
+                                    <div class="layui-input-block" id="present_collecttime"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">采集备注：</label>
+                                    <div class="layui-input-block" id="present_collectmemo"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">修改人：</label>
+                                    <div class="layui-input-block" id="present_modifyperson">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">最后修改时间：</label>
+                                    <div class="layui-input-block" id="present_modifytime"></div>
+                                </div>
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label">修改原因：</label>
+                                    <div class="layui-input-block" id="present_modifyreason">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/information_manager/person_historical_record/person_historical_record_see.js"></script>
+</body>
+
+</html>

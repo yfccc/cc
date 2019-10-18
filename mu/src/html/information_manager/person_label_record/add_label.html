@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <title>Document</title>
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-input-block {
+            margin-left: 110px;
+        }
+
+        .layui-form-label {
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="section">
+        <div class="layui-row">
+            <div class="layui-card" style="background-color: #f2f2f2;">
+                <div class="layui-card-body">
+                    <form class="layui-form" action="" id="from2" lay-filter="component-form-group"
+                        style="padding-top: 20px; padding-right: 40px;">
+                        <input type="text" id="lab_id" name="imId" style="display: none;">
+                        <div class="layui-form-item">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><span> * </span>名称：</label>
+                                <div class="layui-input-block">
+                                    <input type="text" id="lab_name" name="imName" required
+                                        lay-verify="required|labelName"
+                                        onpropertychange="if(value.length>15) value=value.substr(0,15)" maxlength="15"
+                                        placeholder="" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">描述：</label>
+                                <div class="layui-input-block">
+                                    <textarea id="lab_desc" name="imDecrible" placeholder="输入描述" class="layui-textarea"
+                                        onpropertychange="if(value.length>30) value=value.substr(0,30)"
+                                        maxlength="30"></textarea>
+                                    <!-- <p style="font-size:9px;color:#ccc;position:absolute;left:433px;top:72px;">已输入<span
+                                            id="description_len">0</span>/30</p> -->
+                                </div>
+                            </div>
+                        </div>
+                        <button id="add_label_submit" lay-submit lay-filter="form_add_label" data-event="wo"
+                            style="display: none;"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/information_manager/person_label_record/add_label.js"></script>
+    <script>
+
+
+    </script>
+</body>
+
+</html>

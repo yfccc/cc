@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>人员信息管理</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="/layui/layui/css/layui.css">
+    <link  rel="stylesheet"  href="/css/tools.css">
+    <style>
+    html,body{
+        height:328px ;
+    }
+    .layui-inline{
+        width: 100%
+    }
+    .layui-input {
+      /* border: 1px solid #D5D5D5; */
+      width: 350px;
+    }
+    .bitian{
+        color: red;
+        margin-right:5px;
+    }
+    .layui-form-danger {
+            border-color: #FF5722 !important
+        }
+    </style>
+</head>
+<body style="overflow-x:hidden;background: #fff;height: 100%;">
+<div class="layui-fluid " style="padding-top: 0px;height: 100%;">
+    <div class="layui-card"   id="layui-card" style="margin-top:15px;" >
+        <div class="layui-card-body" style="padding: 12px 0px 9px 0px">
+            <form class="layui-form" lay-filter="JK"  style="height: 100%" >
+                <div class="layui-form-item"  style="margin-top: 35px;">
+                    <div class="layui-inline">
+                        <label class="layui-form-label"><span class="bitian">*</span>原密码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text"  autocomplete="off" class="layui-input" lay-verify="required" id="ymm" onpropertychange="if(value.length>18) value=value.substr(0,18)" maxlength="18">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label"><span class="bitian">*</span>新密码：</label>
+                            <div class="layui-input-inline">
+                                <input type="text"  autocomplete="off" class="layui-input"  lay-verify="required"  id="xmm"  onpropertychange="if(value.length>18) value=value.substr(0,18)" maxlength="18">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <label class="layui-form-label"><span class="bitian">*</span>确认密码：</label>
+                                <div class="layui-input-inline">
+                                    <input type="text"  autocomplete="off" class="layui-input" lay-verify="required"   id="qrmm" onpropertychange="if(value.length>18) value=value.substr(0,18)" maxlength="18">
+                                </div>
+                            </div>
+                        </div>
+                        <div style="height: 45px;position: fixed;left: 0px;bottom:0px;padding-top: 10px;width: 100%;border-top: 1px solid #E6E6E6">
+                                <div class="layui-btn  layui-btn-primary  close" style="float: right;margin-right: 20px;width: 60px;height: 30px;line-height: 30px">取消</div>
+                                <div class="layui-btn   layui-bg-cyan"  lay-submit   style="float: right;margin-right: 10px;width: 60px;height: 30px;line-height: 30px">确定</div>
+                        </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/script/jquery-1.8.3.min.js"></script>
+  <!-- 兼容IE89ajax -->
+  <!--[if lt IE 10]> 
+    <script src="/script/jquery.xdomainrequest.min.js"></script>
+    <script src="/script/html5shiv/r29/html5.min.js"></script>
+    <script src="/script/json2.js"></script>
+  <![endif]-->
+<script src="/layui/layui/layui.js"></script>
+<script src="/script/layui_config.js"></script>
+<script src="/script/index/user_edit.js"></script>
+</body>
+</html>

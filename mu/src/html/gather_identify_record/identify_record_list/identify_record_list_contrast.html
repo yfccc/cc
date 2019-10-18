@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>识别记录页面对比信息弹框</title>
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-btn-disabled,
+        .layui-btn-disabled:active,
+        .layui-btn-disabled:hover {
+            border: 0px;
+        }
+
+        .left-container-title,
+        .right-container-title {
+            height: 40px;
+            line-height: 40px;
+            padding-left: 20px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 30px;
+        }
+
+        .layui-form-item {
+            margin-bottom: 0;
+        }
+
+        .layui-form-item>label {
+            width: 120px;
+            padding: 0;
+        }
+
+        .layui-form-item>div {
+            margin-left: 95px;
+            width: 155px;
+        }
+
+        .change {
+            color: red;
+        }
+
+        .layui-form-label+div {
+            color: rgb(121, 121, 121);
+        }
+
+        .layui-form-label {
+            line-height: 16px;
+        }
+
+        .left-container,
+        .right-container {
+            float: left;
+            width: 49.93%;
+        }
+    </style>
+</head>
+
+<body id="body" style="background:#fff;overflow-x:hidden;">
+    <div>
+        <div class=".layui-layer-btn .layui-layer-btn0 left-container"
+            style="height:448px;border-right:1px solid #ccc;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
+            <div class="left-container-title">
+                <span style="color:rgb(121, 121, 121);">原注册信息</span>
+            </div>
+            <div class="left-container-content">
+                <div class="left-content-infolist">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">姓名：</label>
+                        <div class="layui-input-block layui-elip" id="original_name"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">证件类型：</label>
+                        <div class="layui-input-block layui-elip" id="original_type"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">证件号：</label>
+                        <div class="layui-input-block layui-elip" id="original_number"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">性别：</label>
+                        <div class="layui-input-block layui-elip" id="original_gender"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">出生日期：</label>
+                        <div class="layui-input-block layui-elip" id="original_birthday"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">国籍：</label>
+                        <div class="layui-input-block layui-elip" id="original_nationality"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">民族：</label>
+                        <div class="layui-input-block layui-elip" id="original_nation"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">户籍地址：</label>
+                        <div class="layui-input-block layui-elip" id="original_address"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">证件签发机构：</label>
+                        <div class="layui-input-block layui-elip" id="original_authority"></div>
+                    </div>
+                </div>
+                <div class="layui-form-item left-top-padding"
+                    style="position: absolute;top: 70px;right: 406px;z-index: -1;">
+                    <div style="width:120px;">
+                        <img id="original_imageCard" src="/img/card-img.png" style="width:120px;height:140px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-layer-content right-container"
+            style="height:448px;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
+            <div class="right-container-title">
+                <span style="color:rgb(121, 121, 121);">对比信息</span>
+            </div>
+            <div class="right-container-content">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名：</label>
+                    <div class="layui-input-block layui-elip" id="present_name"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">证件类型：</label>
+                    <div class="layui-input-block layui-elip" id="present_type"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">证件号：</label>
+                    <div class="layui-input-block layui-elip" id="present_number"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别：</label>
+                    <div class="layui-input-block layui-elip" id="present_gender"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出生日期：</label>
+                    <div class="layui-input-block layui-elip" id="present_birthday"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">国籍：</label>
+                    <div class="layui-input-block layui-elip" id="present_nationality"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">民族：</label>
+                    <div class="layui-input-block layui-elip" id="present_nation"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">户籍地址：</label>
+                    <div class="layui-input-block layui-elip" id="present_address"></div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">证件签发机构：</label>
+                    <div class="layui-input-block layui-elip" id="present_authority"></div>
+                </div>
+                <div class="layui-form-item left-top-padding"
+                    style="position: absolute;top: 70px;right: 5px;z-index: -1;">
+                    <div style="width:120px;">
+                        <img id="present_imageCard" src="/img/card-img.png" style="width:120px;height:140px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+<script src="/script/jquery-1.8.3.min.js"></script>
+<!-- 兼容IE89ajax -->
+<!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+<script src="/layui/layui/layui.js"></script>
+<script src="/script/layui_config.js"></script>
+<script src="/script/gather_identify_record/identify_record_list/identify_record_list_contrast.js"></script>
+
+</html>

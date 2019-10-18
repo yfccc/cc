@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="/layui/layui/css/layui.css">
+    <link  rel="stylesheet"  href="/css/system/role/role_personorgroup.css">
+    <title>Document</title>
+</head>
+<body style="overflow-x:hidden;">
+    <div class="section">
+        <ul class="menu left">
+            <li class="title">选择人员或机构</li>
+            <li>
+                <span>机构名字</span>
+                <span>↓下级</span>
+            </li>
+            <li>
+                <span>人员名字</span>
+                <span>+添加</span>
+            </li>
+        </ul>
+        <ul class="menu right">
+                <li class="title">已选（<p style="display:inline;">2</p>）<span id="clear">清空</span></li>
+                <li>
+                    <span>人员名字</span>
+                    <span>×</span>
+                </li>
+                <li>
+                    <span>人员名字</span>
+                    <span>×</span>
+                </li>
+        </ul>
+        <div class="div-container-button">
+            <button class="layui-btn layui-btn-normal" id="choose_cancel" style="border:1px solid #1E9FFF;color:#1E9FFF;background:#fff;height: 34px; line-height: 34px;">取消</button>
+            <button class="layui-btn layui-btn-normal" id="submit_cancel" style="margin-right:40px;height: 34px; line-height: 34px;">确定</button>
+        </div>
+    </div>
+    
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/system/role/role_personorgroup.js"></script>
+</body>
+</html>

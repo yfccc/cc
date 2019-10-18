@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-input-inline {
+            width: 770px !important;
+        }
+
+        .layui-form-item {
+            text-align: center;
+        }
+
+        .layui-form-item label,
+        .layui-form-item .layui-input-inline {
+            float: none;
+            display: inline-block;
+        }
+
+        .layui-card {
+            box-shadow: none;
+        }
+    </style>
+    <title>添加机构</title>
+</head>
+
+<body style="overflow-x:hidden;background: #fff;">
+    <div class="layui-fluid" style="min-width: 1200px;">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <form class="layui-form" action="" id="from2" lay-filter="add_institutious_filter"
+                    style="padding-top: 20px; padding-right: 80px;">
+                    <div class="layui-form-item">
+                        <input id="prev_org_id" name="jgxxFjjgid" type="text" style="display: none;">
+                        <input id="org_id" name="jgxxJgid" type="text" style="display: none;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span style="display: none;" class="mustlogo"> * </span>上级机构：</label>
+                            <div class="layui-input-inline" id="select_org">
+                                <input type="text" id="prev_org" disabled placeholder="选择上级机构" autocomplete="off"
+                                     class="layui-input">
+                                <i class="layui-icon layui-icon-search"
+                                    style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux"></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><span> * </span>机构名称：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="org_name" name="jgxxGajgjgmc" required lay-verify="required"
+                                    placeholder="" autocomplete="off" class="layui-input"
+                                    onpropertychange="if(value.length>30) value=value.substr(0,30)" maxlength="30">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux"></div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span> * </span>机构代码：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="org_coding" name="jgxxGajgjgdm" required lay-verify="required"
+                                placeholder="" autocomplete="off" class="layui-input"
+                                onpropertychange="if(value.length>12) value=value.substr(0,12)" maxlength="12">
+                            <i class="layui-icon"></i>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">地址：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="jgxxDz" name="jgxxDz" placeholder="" autocomplete="off"
+                                class="layui-input" onpropertychange="if(value.length>200) value=value.substr(0,200)"
+                                maxlength="200">
+                            <i class="layui-icon"></i>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">经度：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="jgxxJd" name="jgxxJd" placeholder="" autocomplete="off"
+                                class="layui-input" lay-verify="longitude" onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                maxlength="50">
+                            <i class="layui-icon"></i>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">纬度：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="jgxxWd" name="jgxxWd" placeholder="" autocomplete="off"
+                                class="layui-input" lay-verify="latitude" onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                maxlength="50">
+                            <i class="layui-icon"></i>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"></div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label" style="margin-left: 9px;vertical-align: top;">描述：</label>
+                        <div class="layui-input-inline" style="width: 770px;">
+                            <textarea id="org_desc" name="jgxxGajgjgmcms" style="margin-left: 1px;" placeholder="输入进行描述"
+                                class="layui-textarea" onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                maxlength="50"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-layout-admin">
+                        <div class="layui-input-block">
+                            <div class="layui-footer" style="left: 0;z-index: 4;padding: 0px;height: 64px;">
+                                <div class="tijiao">
+                                    <button id="submit_add_institutious" lay-submit lay-filter="form_add_institutious"
+                                        class="layui-btn"
+                                        style="width: 140px; height: 40px;background-color: #2F4056;">提交</button>
+                                    <a href="./institutions.html" class="layui-btn layui-btn-primary"
+                                        style="width: 140px; height: 40px;">返回</a>
+                                </div>
+                                <!-- 为了兼容在ie8下面提交中字体模糊的问题-->
+                                <div class="tijiaozhong" style="display: none">
+                                    <button type="button" class="layui-btn"
+                                        style="width: 140px; height: 40px;background-color: #2F4056;">提交中...</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary"
+                                        style="width: 140px; height: 40px;" onclick="cleanFrom();">重置</button>
+                                    <input type="hidden" id="formData">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/system/institutions/add_institutious.js"></script>
+</body>
+
+</html>

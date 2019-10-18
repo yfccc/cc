@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>采集量统计</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <link rel="stylesheet" href="/css/gather_identify_statistical/gather_identify_cjl.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-table-box div {
+            margin: 0px;
+        }
+
+        .layui-form-label {
+            width: 80px;
+        }
+
+        .layui-form-item .layui-input-inline {
+            width: auto;
+        }
+
+        /* .layui-table td,
+        .layui-table th {
+            position: relative;
+            padding: 9px 15px;
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 14px;
+        } */
+    </style>
+</head>
+
+<body style="overflow-x:hidden;background: #fff;">
+    <div class="layui-fluid  parentBox">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" lay-filter="component-tabs-brief">
+                    <!-- <--<ul class="layui-tab-title"   id="echarsList" style="font-weight:bold"> -->
+                    <form class="layui-form" action="" id="from2" lay-filter="component-form-group"
+                        style="padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <div class="layui-inline" style="margin-right: 0px;min-width: 775px;">
+                                <label class="layui-form-label" style="padding: 9px;"><span> * </span>采集时间：</label>
+                                <div class="layui-input-inline  dateParent"
+                                    style="display: block; width: 86%; position: relative">
+                                    <div class="layui-input-inline">
+                                        <span class="inputSpan timeSpan " style="left:185px;width: 100px">请选择起止时间</span>
+                                        <input type="radio" name="dateType" lay-filter="timeType" value="month"
+                                            title="按月" class="inputRadio">
+                                        <input type="radio" name="dateType" lay-filter="timeType" value="week"
+                                            title="按周" class="inputRadio">
+                                        <input type="radio" name="dateType" lay-filter="timeType" value="day" title="按天"
+                                            class="inputRadio tianradio" checked="true">
+                                    </div>
+
+                                    <div class="layui-input-inline">
+                                        <input type="text" style="display:none;" class="layui-input dateval"
+                                            id="ss_cjsjMonth" placeholder="请选择开始时间" autocomplete="off">
+                                        <input type="text" style="display:none;" class="layui-input dateval"
+                                            id="ss_cjsjWeek" placeholder="请选择开始时间" autocomplete="off">
+                                        <input type="text" style="display:block;" class="layui-input dateval"
+                                            id="ss_cjsjDay" name="dateBegin" placeholder="请选择开始时间" autocomplete="off">
+                                    </div>
+                                    <div class="layui-input-inline" style="height: 38px;line-height:38px;">
+                                        至
+                                    </div>
+                                    <div class="layui-input-inline">
+                                        <input type="text" style="display:none;" class="layui-input dateval"
+                                            id="ee_cjsjMonth" placeholder="请选择结束时间" autocomplete="off">
+                                        <input type="text" style="display:none;" class="layui-input dateval"
+                                            id="ee_cjsjWeek" placeholder="请选择结束时间" autocomplete="off">
+                                        <input type="text" style="display:block;" name="dateEnd"
+                                            class="layui-input dateval" id="ee_cjsjDay" placeholder="请选择结束时间"
+                                            autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline" style="margin-right: 0px">
+                                <label class="layui-form-label"><span> * </span>组织机构：</label>
+                                <div class="layui-input-inline" id="select_org">
+                                    <input type="text" id="prev_org" name="" disabled placeholder="请指定机构"
+                                        autocomplete="off" class="layui-input">
+                                    <i class="layui-icon layui-icon-search"
+                                        style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="btnParent" style="text-align: center;">
+                                <button class="layui-btn" id="ss_button" data-type="reload" type="button" lay-submit
+                                    lay-filter="searchinfo" style="background: #2F4056">查询</button>
+                                <button class="layui-btn layui-btn-primary" id="btn_reset" type="button">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-fluid bottom-content table-layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="bgDIV">
+                    <ul class="layui-tab-title" id="echarsList" style="font-weight:bold">
+                        <li class="layui-this" data-type="zhe">折线图(数据增长趋势)</li>
+                        <li class="" data-type="zhu">柱状图(子机构采集量统计)</li>
+                        <li class="" data-type="bing">饼图(子机构采集量占比)</li>
+                    </ul>
+                    <div class="layui-tab-content" style="height: 700px;">
+                        <div class="layui-tab-item layui-show">
+                            <!-- 折线图 -->
+                            <button class="layui-btn layui-btn-sm download" id="exportZhe"
+                                lay-event="export">导出</button>
+                            <div id="charts_zhe"></div>
+                            <div class="layui-fluid table-layui-fluid">
+                                <div class="layui-card" style="margin-top:15px;">
+                                    <div class="layui-card-body  tableBody" style="padding: 0px">
+                                        <div class="layui-row layui-col-space15  tableBOttom"
+                                            style="margin-top:-5px;margin-bottom: 5px;">
+                                            <div class="layui-col-md12">
+                                                <div class="layui-card layui-cards" style="box-shadow: 0 0 0 0">
+                                                    <div class="layui-card-body" id="box_height1"
+                                                        style="padding:5px 15px 10px">
+                                                        <table class="layui-hide layui-table" id="charts_zhe_table">
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <!-- 柱状图 -->
+                            <button class="layui-btn layui-btn-sm download" id="exportZhu"
+                                lay-event="export">导出</button>
+                            <div id="charts_zhu"></div>
+                            <div class="layui-fluid table-layui-fluid">
+                                <div class="layui-card" style="margin-top:15px;">
+                                    <div class="layui-card-body  tableBody" style="padding: 0px">
+                                        <div class="layui-row layui-col-space15  tableBOttom"
+                                            style="margin-top:-5px;margin-bottom: 5px;">
+                                            <div class="layui-col-md12">
+                                                <div class="layui-card layui-cards" style="box-shadow: 0 0 0 0">
+                                                    <div class="layui-card-body" id="box_height"
+                                                        style="padding:5px 15px 10px">
+                                                        <table class="layui-hide layui-table"
+                                                            lay-filter="chartsZhu-table-operate" id="charts_zhu_table">
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item ">
+                            <!-- 饼图 -->
+                            <div id="charts_bing"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="chartsZhu-table-operate">
+        {{#  if(d.totalCount > 0 || d.count > 0){ }}
+        <a style="color:#1E9FFF;" href="javascript:" lay-event="detail">详情</a>
+        {{# }else{ }}
+        <span style="color:#cccccc;">详情</span>
+        {{#  } }}
+    </script>
+
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/script/echarts/echarts.js"></script>
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/gather_identify_statistical/gather_cjl/gather_cjl.js"></script>
+</body>
+
+</html>

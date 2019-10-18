@@ -1,0 +1,248 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+    padding: 0px;
+    background: #F2F2F2;
+    overflow: hidden;
+}
+
+span:hover {
+    cursor: pointer;
+}
+
+.left-menu-parent {
+    height: 99.9%;
+    width: 200px;
+    background: #03152A;
+    float: left;
+    overflow-y: auto;
+}
+
+.right-content {
+    height: 100%;
+    float: right;
+}
+
+.header {
+    width: 100%;
+    height: 54px;
+    background: #03152A;
+}
+
+.right-content .section {
+    width: 99%;
+    height: 99%;
+    overflow: hidden;
+    margin-left: 0.5%;
+    margin-top: 0.4%;
+}
+
+.right-content .section iframe {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background: #F2F2F2;
+    float: left;
+  
+}
+
+.log {
+    height: 56px;
+    max-width: 340px;
+    min-width: 200px;
+    font-size: 16px !important;
+    font-weight: bold;
+    line-height: 56px !important;
+    color: #fff;
+    float: left !important;
+    text-indent: 15px;
+    margin-right: 20px;
+    font-size:14px !important; 
+}
+.log:hover{
+    background: #03152A !important;
+}
+.log img{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    float: left;
+    margin:10px 10px 0px 18px;
+}
+.log span{
+    float: left;
+    text-align: left !important;
+    text-indent: 0px !important;
+}
+.layui-nav-tree {
+    width: 100% !important;
+}
+
+.layui-nav-item>a {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-indent: 25px;
+}
+
+.aItemIcon {
+    margin-right: 10px !important;
+    font-size: 20px !important;
+}
+
+.layui-nav-child dd a {
+    text-indent: 45px;
+}
+
+.header-item {
+    height: 100%;
+    font-size: 14px;
+    line-height: 56px;
+    text-align: center;
+    float: right;
+    color: #B4B9C0;
+    font-weight: bold;
+}
+
+.header-item:hover {
+    background-color: #05213E;
+}
+
+.header-item i {
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.dowelode {
+    width: 120px;
+    position: relative;
+}
+
+.dowelode i:nth-of-type(2) {
+    margin-left: 5px;
+    font-size: 14px;    
+}
+
+.user {
+    width: 120px;
+    position: relative;
+}
+
+.out {
+    width: 60px;
+}
+
+.hovers:hover {
+    cursor: pointer;
+}
+
+.out i {
+    font-size: 22px;
+}
+
+.layui-nav-child {
+    /* background: #282B33 !important; */
+}
+
+.hover {
+    height: 80px;
+    width: 100%;
+    background: #05213E;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    display: none;
+}
+
+.hover span,
+.hover a {
+    width: 100%;
+    height: 50%;
+    display: block;
+    text-align: center;
+    line-height: 40px;
+    font-weight: normal;
+    background: #fff;
+    font-size: 12px;
+    color: #333;
+}
+.hover a span{
+    height: 100%;
+}
+
+.hover span:hover,
+.hover a:hover {
+    background: #05213E;
+    color: #fff;
+}
+
+.user:hover .user-hover {
+    display: block;
+}
+
+.dowelode:hover .dowelode-hover {
+    display: block;
+}
+
+.header-item:hover .layui-icon {
+    color: #4A90E2;
+}
+
+.first-home {
+    width: 60px;
+    text-align: center;
+    float: right;
+    margin-right: 10px;
+    font-size:14px; 
+    line-height: 54px;
+}
+
+.yj i {
+    font-size: 18px;
+}
+
+.yj {
+    width: 100px
+}
+
+.dowelode i:nth-last-of-type(1) {
+    margin-top: 15px !important;
+}
+
+#sub-title {
+    height: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #969695;
+    margin-top: 18px !important;
+    float: left;
+    text-indent: 10px;
+}
+#sub-title i{
+    float: left;
+    height: 18px;
+    border-left: 2px solid #fff;
+    margin-top: 2px;
+} 
+.reload {
+    height: 100%;
+    width: 60px;
+    float: left;
+    font-size: 20px !important;
+    color: #969695;
+    line-height: 60px;
+    text-align: center;
+}
+
+.reload:hover {
+    color: #4A90E2;
+    background: #F8F8F8;
+}
+#sub-title-span{
+    font-size:14px; 
+    line-height: 24px;
+}

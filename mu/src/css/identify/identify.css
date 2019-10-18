@@ -1,0 +1,159 @@
+
+.people_info div , span{
+float: left;
+/* display: none; */
+}
+.info{
+    display: none;
+    width: 70%;
+}
+#people_info_title{
+    display: block
+}
+.people_info_RS{
+    margin-left:10px;
+    font-weight:none; 
+} 
+.people_info_wiod{
+    width:60%;
+    text-align: center;
+    overflow: hidden;
+    height: 40px;
+    position: relative;
+}
+.people_info_list{
+    width: 200%;
+    height: 100%;
+    color: #CCCCCC;
+    position: absolute;
+    top: 0px; 
+    left:0px;
+}
+.people_info_list  .people_info_item{
+    width: 72px;
+    border: 1px solid #E4E4E4;
+    height: 30px;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 30px;
+    margin-top:5px;
+    font-size:12px; 
+    text-indent: 4px;
+}
+.people_info_prve{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: #CCCCCC;
+}
+.people_info_next{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: #CCCCCC;
+    float: right;
+}
+.people_info_prve:hover{
+    cursor:pointer;
+    color: #999999;
+}
+.people_info_next:hover{
+    cursor:pointer;
+    color: #999999;
+}
+.people_info_img_right{
+    height: 80%;
+    width: 50%;
+    /* background: red; */
+    float: left;
+    margin-left: 10px;
+}
+.people_info_img_right span{
+    display: block;
+    width: 100%;
+}
+.people_info_img_right span:nth-of-type(2){
+  /* margin-top:20px; */
+ }
+.people_info_img_right span:nth-of-type(3){
+    color: #4A90E2;
+    font-weight:bold ;
+    overflow:hidden; 
+    height: 100px;
+ }
+ .people_info_img_right span:nth-of-type(5){
+    color: #4A90E2;
+    font-weight:bold ;
+ }
+#sbjg-zjbz{
+    font-weight: bold;
+    color: red !important; 
+} 
+.people_info_item:hover{
+    cursor:pointer;
+}
+.clickThis{
+    color: #4A90E2;
+    border: 1px solid #4A90E2;
+}
+.center{
+    display: none;
+}
+.show{
+    display: block;
+}
+.hidde{
+    display: none;
+}
+#sbjg-lsjl{
+    display: none;
+    width: 230px;
+}
+.yzwzbz{
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    display: none;
+    font-weight:bold;
+     text-indent: 10px;
+}
+.bzbz{
+   color:#4BD863;
+}
+.wbzbz{
+    color: red;
+}
+.longText {
+white-space: nowrap  !important;/*设置不换行*/
+ overflow: hidden   !important; /*设置隐藏*/
+ text-overflow: ellipsis  !important; /*设置隐藏部分为省略号*/
+}
+#show-form-1  .layui-input-block{
+    width: 68% !important;
+    
+}
+.ztk{
+    height:100px;
+    overflow: hidden   !important; /*设置隐藏*/
+    text-overflow: ellipsis  !important; /*设置隐藏部分为省略号*/
+}
+
+.yypf{
+    cursor:default  !important;
+}
+.zypf{
+    cursor:default !important;
+}
+#sbjg-sbhs{
+    cursor:default ;
+}
+.center span{
+    cursor:default !important;
+}
+.wbzcolor{
+    color: red;
+}
+.bzcolor{
+    color: #69C083;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/layui/layui/css/layui.css">
+  <link rel="stylesheet" href="/css/tools.css">
+  <style>
+    .layui-input {
+      border: 1px solid #D5D5D5;
+    }
+  </style>
+  <title>数据字典管理弹框新增字典</title>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="section">
+        <form class="layui-form" action="" id="from2" lay-filter="component-form-group" style="padding-top: 83px; padding-right: 80px;">
+            <div class="layui-form-item">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span> * </span>字典名称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="ctDecrible" id="ctDecrible" required lay-verify="required|account" placeholder="字典名称"
+                          autocomplete="off" class="layui-input" onpropertychange="if(value.length>40) value=value.substr(0,40)"
+                          maxlength="40">
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="display: none;">
+                    <label class="layui-form-label"><span> * </span>字典编号：</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="ctId" id="ctId" placeholder="字典编号"
+                        autocomplete="off" class="layui-input" onpropertychange="if(value.length>32) value=value.substr(0,32)"
+                        maxlength="32">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">描述：</label>
+                    <div class="layui-input-block">
+                        <textarea name="ctRemark" id="ctRemark" placeholder="输入描述" class="layui-textarea" onpropertychange="if(value.length>30) value=value.substr(0,30)"
+                            maxlength="30"></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="display: none;">
+                    <button type="button" lay-submit class="layui-btn layui-btn-nomary" id="changeSubmit" lay-filter="modifyinfo" lay-event="submit">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+  <script src="/script/jquery-1.8.3.min.js"></script>
+   <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+  <script src="/layui/layui/layui.js"></script>
+  <script src="/script/layui_config.js"></script>
+  <script src="/script/system/dictionary/add_dictionary.js"></script>
+</body>
+
+</html>

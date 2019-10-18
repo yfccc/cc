@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>日志管理</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-form-label {
+            width: 70px;
+        }
+
+        .layui-table-tool-panel {
+            max-height: 400px;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <input type="hidden" value="" id="querytype">
+    <div class="layui-fluid " style="padding-top: 0px;">
+        <div class="layui-card" id="layui-card">
+            <div class="layui-card-body" id="formDiv" style="padding: 12px 0px 9px 0px">
+                <form class="layui-form" lay-filter="JK" id="loginfo">
+                    <div class="layui-form-item  oneTop" style="margin-bottom: 12px">
+                        <div class="layui-inline" id="logPlatform">
+                            <label class="layui-form-label">日志来源：</label>
+                            <div class="layui-input-inline">
+                                <select name="igPlatform" class="select" id="igPlatform" lay-filter="igPlatform">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline" style="display: none;" id="thirdPartyName">
+                            <label class="layui-form-label">账号名称：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="clientName" name="clientName" autocomplete="off"
+                                    class="layui-input" placeholder="请输入账号名称">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <span class="inputSpan  dateSpan">请选择起止时间</span>
+                            <label class="layui-form-label" autocapitalize="off">创建时间：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" name="sjsj" id="log-laydate-range-date"
+                                    placeholder="请选择起止时间" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <label class="layui-form-label">日志类型：</label>
+                            <div class="layui-input-inline" id="igTypeParent">
+                                <select name="igType" class="select" id="igType" lay-filter="igType">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline" id="igxzTypeParent" style="display: none;">
+                                <select name="igxzType" class="select" id="igxzType" lay-filter="igxzType">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline" id="typeParent" style="display: none;">
+                                <select name="type" class="select" id="type" lay-filter="type">
+                                    <option value="" selected="">请选择</option>
+                                    <option value="1">虹膜采集</option>
+                                    <option value="2">虹膜查验</option>
+                                    <option value="3">虹膜核验</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline" style="display: none;" id="markType">
+                            <label class="layui-form-label">完成状态：</label>
+                            <div class="layui-input-inline">
+                                <select name="mark" class="select" id="mark" lay-filter="mark">
+                                    <option value="" selected="">请选择</option>
+                                    <option value="0">成功</option>
+                                    <option value="1">失败</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-inline" id="logContent">
+                            <label class="layui-form-label">日志内容：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="igDecrible" name="igDecrible" autocomplete="off"
+                                    class="layui-input" placeholder="请输入日志内容">
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="btnParent" style="text-align: center;">
+                            <button class="layui-btn" id="search_btn" data-type="reload" type="button"
+                                style="background-color: #2F4056;" lay-submit lay-filter="searchinfo">查询</button>
+                            <button type="button" id="reset_btn" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-fluid  table-layui-fluid">
+        <div class="layui-card" style="margin-top:15px;">
+            <div class="layui-card-body  tableBody" style="padding: 0px">
+                <div class="layui-row layui-col-space15  tableBOttom" style="margin-top:-5px;margin-bottom: 5px;">
+                    <div class="layui-col-md12">
+                        <div class="layui-card layui-cards" style="box-shadow: 0 0 0 0">
+                            <div class="layui-card-body" id="box_height" style="padding:5px 15px 10px">
+                                <div class="layui-tab layui-tab-brief" lay-filter="identify_tab_filter">
+                                    <ul class="layui-tab-title" style="margin-bottom: 20px;margin-top:-7px">
+                                        <li class="layui-this" id="a">系统日志</li>
+                                        <li id="b">调用刑专日志</li>
+                                        <li id="c">第三方日志</li>
+                                    </ul>
+                                    <div class="layui-tab-content" style="padding:7px 0px 0px 0px;width: 100%;"
+                                        id="eye">
+                                        <div class="layui-tab-item layui-show">
+                                            <table id="log-table-page" class="layui-table hhh"></table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="table-hreader">
+        <!-- 兼容没有按钮右边筛选列上移问题 -->
+        <div class="layui-btn-container">
+            <a class="layui-btn layui-btn-sm download" style="cursor: default;opacity: 0;filter:alpha(opacity=0);" href="javascript:"></a>
+        </div>
+    </script>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/monitoring/monitoring/log.js"></script>
+</body>
+
+</html>
