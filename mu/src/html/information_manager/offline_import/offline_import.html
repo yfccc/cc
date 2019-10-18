@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>离线数据导入</title>
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <link rel="stylesheet" href="/css/information_manager/offline_import.css">
+    <style>
+        .nodata {
+            position: relative;
+            top: 174px;
+            left: 0px;
+            text-align: center;
+        }
+
+        .textoverflow {
+            max-width: 200px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: block;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="layui-upload">
+        <button type="button" class="layui-btn layui-btn-normal" id="testList"
+            style="background-color: #2F4056;margin-bottom: 5px;">导入</button>
+        <button type="button" class="layui-btn layui-btn-normal" id="replace"
+            style="background-color: #2F4056;margin-bottom: 5px;display: none;">导入</button>
+        <div
+            style="height: 38px;color: #999999;font-size:14px;line-height: 38px;display: inline-block; position: relative;left: 20px;top: 0px;">
+            请导入 .irisking 格式的离线数据文件，支持同时导入多个文件。
+        </div>
+        <div class="layui-upload-list">
+            <table class="layui-table">
+                <thead>
+                    <tr>
+                        <th>文件名</th>
+                        <th>获取数据状态</th>
+                        <th>导入状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="demoList"></tbody>
+            </table>
+        </div>
+        <div class="nodata">
+            <img src="/img/nodata.png">
+        </div>
+    </div>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/information_manager/offline_import/offline_import.js"></script>
+
+</body>
+
+</html>

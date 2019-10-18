@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+    </style>
+    <title>接入管理弹框增改信息</title>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="section" style="overflow-y: auto;">
+        <form class="layui-form" action="" id="from2" lay-filter="component-form-group"
+            style="padding-top: 33px; padding-right: 80px;">
+            <div class="layui-form-item">
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span> * </span>企业名称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" id="name" required lay-verify="required"
+                            placeholder="请输入企业名称" autocomplete="off" class="layui-input"
+                            onpropertychange="if(value.length>50) value=value.substr(0,50)" maxlength="50">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span> * </span>接入Id：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="clientId" id="clientId" required lay-verify="required"
+                            placeholder="接入Id" autocomplete="off" class="layui-input"
+                            onpropertychange="if(value.length>15) value=value.substr(0,15)" maxlength="15">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span> * </span>接入密码：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="clientSecret" id="clientSecret" required lay-verify="required"
+                            placeholder="接入密码" autocomplete="off" class="layui-input"
+                            onpropertychange="if(value.length>30) value=value.substr(0,30)" maxlength="30">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><span> * </span>状态：</label>
+                    <div class="layui-input-block">
+                        <select name="status" class="select" id="status" required lay-verify="required"
+                            lay-filter="status">
+                            <option value="1">启用</option>
+                            <option value="2">禁用</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label"><span> * </span>备注：</label>
+                    <div class="layui-input-block">
+                        <textarea name="remark" id="remark" placeholder="备注" required lay-verify="required"
+                            class="layui-textarea" onpropertychange="if(value.length>30) value=value.substr(0,30)"
+                            maxlength="30"></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item" style="display: none;">
+                    <button type="button" lay-submit class="layui-btn layui-btn-nomary" id="changeSubmit"
+                        lay-filter="modifyinfo" lay-event="submit">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/system/insert/change_insert.js"></script>
+</body>
+
+</html>

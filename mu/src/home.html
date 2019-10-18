@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>虹膜采集</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/script/echarts/echarts.js"></script>
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script>
+        $(document).ready(function () {
+            var ModelList = JSON.parse(localStorage.getItem("models"));
+            var itemA = $("li a")
+            $(ModelList).each(function (i, item) {
+                $(itemA).each(function (i, itemm) {
+                    var itemText = $(itemm).text()
+                    if (itemText == item.modelName) {
+                        if (item.queryType == 4) {
+                            $(itemm).attr("href", item.modelUrl)
+                            $(itemm).attr("queryType", item.queryType + "-" + item.notifiedBody)
+                            $(itemm).parent().css("display", "block")
+                        } else {
+                            $(itemm).attr("href", item.modelUrl)
+                            $(itemm).attr("queryType", item.queryType)
+                            $(itemm).parent().css("display", "block")       
+                        }
+
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+
+<body style="overflow-x:hidden;">
+    <div class="home-list">
+        <div class="home-item   home-item-first " id="banner">
+            <div class="header"> 快捷方式</div>
+            <ul class="content">
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/gather.png">
+                    </span>
+                    <a href="/html/gather/gather.html">虹膜采集</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/identfy.png">
+                    </span>
+                    <a href="/html/identify/identify.html">虹膜核查</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/cjjl.png">
+                    </span>
+                    <a href="/html/gather_identify_record/gather_record_list/gather_record_list.html">采集记录</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/cjjlpl.png">
+                    </span>
+                    <a href="/html/gather_identify_record/gather_record_PL_search/">采集记录批量查询</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/sbjlcx.png">
+                    </span>
+                    <a href="/html/gather_identify_record/identify_record_list/identify_record_list.html">核查记录</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/bj.png">
+                    </span>
+                    <a href="/html/gather_identify_record/bjxxcx/bjxxcx.html">报警信息统计</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/cjltj.png">
+                    </span>
+                    <a href="/html/gather_identify_statistical/gather_cjl/gather_cjl.html">采集量统计</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/sbltj.png">
+                    </span>
+                    <a href="/html/gather_identify_statistical/identify_sbl/identify_sbl.html">核查量统计</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/ryxxwh.png">
+                    </span>
+                    <a href="/html/information_manager/person/person.html">人员标签管理</a>
+                </li>
+                <li>
+                    <span>
+                        <img src="/img/indexpic/icon/ztk.png">
+                    </span>
+                    <a href="/html/information_manager/project_library/project_library.html">专题库管理</a>
+                </li>
+            </ul>
+        </div>
+        <div class="home-item   home-item-tow">
+            <div class="header">公告</div>
+            <h2 id="sign_title"></h2>
+            <span id="sign_time" class="sub-title"></span>
+            <div id="sign_content"></div>
+        </div>
+        <div class="home-item   home-item-tree">
+            <div class="header">本月的采集量(按周)</div>
+            <div id="gather-charts" class="gather-charts"></div>
+        </div>
+        <div class="home-item  home-item-4">
+            <div class="header">本月的识别量(按周)</div>
+            <div id="identify-charts" class="identify-charts"></div>
+        </div>
+    </div>
+    <!-- <div class="footer">
+        <div class="footer-left">Copyright © www.irisking.com, All Rights Reserved.</div>
+        <div class="footer-right">
+            <div class="footer-right-left">技术支持</div>
+            <ul class="footer-right-right">
+                <li>韩兴源 联系电话：xxxxxxxxxxx 邮箱：hanxy@irisking.com</li>
+            </ul>
+        </div>
+    </div> -->
+    <script src="/script/home.js"></script>
+</body>
+
+</html>

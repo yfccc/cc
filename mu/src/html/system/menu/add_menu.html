@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+    </style>
+    <title>菜单管理二级页面</title>
+</head>
+
+<body style="overflow-x:hidden;background: #fff;">
+    <!-- <div class="sub-title">
+    <span id="menutitle">新增菜单</span>
+  </div> -->
+    <div class="section">
+        <div class="layui-card">
+            <div class="layui-card-body" style="min-width: 800px;height:760px;">
+                <form class="layui-form" action="" id="from2" lay-filter="component-form-group"
+                    style="padding-top: 20px; padding-left: 30px;">
+                    <div class="layui-container">
+                        <div class="layui-row">
+                            <div class="layui-col-xs6">
+                                <input type="text" id="prev_org_id" name="modelParentid" style="display: none">
+                                <input type="text" id="org_id" name="modelId" style="display: none">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">上级菜单：</label>
+                                    <div class="layui-input-inline" id="select_org">
+                                        <input type="text" id="prev_org" name="" disabled placeholder="请选择上级菜单"
+                                            autocomplete="off" class="layui-input">
+                                        <i class="layui-icon layui-icon-search"
+                                            style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"></div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="mustfill"> * </span>名称：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="org_name" name="modelName" required lay-verify="required"
+                                            placeholder="" autocomplete="off" class="layui-input" style="width:191px;"
+                                            onpropertychange="if(value.length>15) value=value.substr(0,15)"
+                                            maxlength="15">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"></div>
+                                </div>
+
+                                <div class="layui-form-item" style="margin-bottom: 0px;">
+                                    <label class="layui-form-label"><span class="mustfill"> * </span>可见：</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="modelStatus" value="1" title="显示" checked>
+                                        <input type="radio" name="modelStatus" value="2" title="隐藏">
+                                    </div>
+                                </div>
+                                <label
+                                    style="margin-left: 170px;color: #ccc;white-space: nowrap;">该菜单或操作是否显示到系统菜单中</label>
+                                <div class="layui-form-item data-auth" style="margin-bottom: 0px;margin-top:15px;">
+                                    <label class="layui-form-label"><span class="mustfill"> * </span>数据权限：</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="modelData" value="1" title="需要" checked>
+                                        <input type="radio" name="modelData" value="2" title="不需要">
+                                    </div>
+                                </div>
+                                <label class="data-auth"
+                                    style="margin-left: 170px;color: #ccc;white-space: nowrap;">该菜单是否需要数据查询权限功能</label>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label"><span class="mustfill"> * </span>类型：</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="modelType" lay-filter="receiveobj" value="1"
+                                            title="菜单" checked>
+                                        <input type="radio" name="modelType" lay-filter="receiveobj" value="2"
+                                            title="按钮">
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">链接：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="link" name="modelUrl" placeholder="" autocomplete="off"
+                                            class="layui-input" style="width:191px;"
+                                            onpropertychange="if(value.length>100) value=value.substr(0,100)"
+                                            maxlength="100">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"></div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">权限标识：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="purview_sign" name="modelAuthority" placeholder=""
+                                            autocomplete="off" class="layui-input" style="width:191px;"
+                                            onpropertychange="if(value.length>30) value=value.substr(0,30)"
+                                            maxlength="30">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"></div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">菜单图标：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="modelIcon" name="modelIcon" placeholder=""
+                                            autocomplete="off" class="layui-input" style="width:191px;"
+                                            onpropertychange="if(value.length>32) value=value.substr(0,32)"
+                                            maxlength="32">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"></div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">菜单排序：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="modelSort" lay-verify="numsort" name="modelSort"
+                                            placeholder="" autocomplete="off" class="layui-input" style="width:191px;"
+                                            onpropertychange="if(value.length>10) value=value.substr(0,10)"
+                                            maxlength="10">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">备注：</label>
+                            <div class="layui-input-block">
+                                <textarea id="description" style="width: 660px;" name="modelRemark" placeholder="输入备注"
+                                    class="layui-textarea"
+                                    onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                    maxlength="50"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item layui-layout-admin">
+                            <div class="layui-input-block">
+                                <div class="layui-footer" style="left: 0;z-index: 4;padding: 0px;height: 64px;">
+                                    <div class="tijiao">
+                                        <button id="btn_submit" lay-submit lay-filter="go"
+                                            style="width: 140px; height: 40px;background-color: #2F4056;"
+                                            class="layui-btn">提交</button>
+                                        <a href="./menu.html" class="layui-btn layui-btn-primary"
+                                            style="width: 140px; height: 40px;margin: 10px;">返回</a>
+                                    </div>
+                                    <!-- 为了兼容在ie8下面提交中字体模糊的问题-->
+                                    <div class="tijiaozhong" style="display: none">
+                                        <button type="button" class="layui-btn"
+                                            style="width: 140px; height: 40px;background-color: #2F4056;">提交中...</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary"
+                                            style="width: 140px; height: 40px;" onclick="cleanFrom();">重置</button>
+                                        <input type="hidden" id="formData">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/system/menu/add_menu.js"></script>
+</body>
+
+</html>

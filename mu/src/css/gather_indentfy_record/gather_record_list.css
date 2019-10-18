@@ -1,0 +1,121 @@
+/* .layui-form-label {
+    width: 100px;
+    padding: 9px 0px 9px 0px;
+}
+#form1 {
+    padding-left: 19px;
+}
+.layui-table-cell{
+     padding: 0;
+     margin: 0 4px;
+}
+.inputSpan{
+    position: absolute;
+    top: 0px;
+    left:110px;
+    color:#C2C2C2;
+    z-index: 2;
+    line-height: 36px;
+    display:none;
+    cursor: pointer;
+}
+.postion{
+    position: relative;
+}
+.layui-table thead tr th{
+    border-right:1px solid #E6E6E6;
+    position: static;
+}
+.layui-table-tips-main{
+    height: auto;
+    padding-right: 30px;
+    overflow-x: hidden;
+}
+.layui-table-header tr {background-color:#F8F8F8} */
+body{
+    height: 100%;
+    width: 100%;
+}
+.shou{
+    cursor: pointer;
+}
+.show{
+display: block;
+}
+.none{
+    display: none;
+}
+.bottom_content{
+    height:550px !important;
+    width: 99.6% !important;
+    clear: both;
+    margin-bottom: 0px !important;
+    background: #E6E6E6 !important;
+
+}
+.left-menu{
+    height: 578px;
+    width:300px;
+    float: left;
+    text-align: center;
+    background: #fff;
+
+}
+.left-menu-header{
+    height: 40px;
+    border-bottom: 1px solid #E6E6E6;
+    overflow: hidden;
+    line-height: 40px;
+}
+.left-menu-header span{
+    margin-left:20px;
+    display: inline-block;
+    height: 100%;
+    line-height: 40px;
+    width:70%;
+}
+.left-menu-header i{
+    cursor:pointer; 
+    float: right;
+    color: #666666;
+    font-weight:bold; 
+    margin-right:16px;
+}
+.left-menu-textarea{
+    margin-top:30px;
+    height:83%;
+    width: 100%;
+}
+.left-menu-textarea  textarea{
+    resize: none;
+    width: 80% !important;
+    height: 100% !important;
+    margin-left:10% !important;
+}
+#smor{
+    width: 50px !important;
+}
+.left-menu-smor{
+    line-height: 50px;
+   padding: left 10px;
+}
+#bottom_table{
+    padding: 0px 2px 0px 0px !important;
+    margin-left: 10px;
+    /* float: left; */
+    position: absolute;
+    left:52px;
+    z-index: 1;
+}
+.download{
+    background: #2F4056 !important;
+}
+.layui-laydate .laydisabled,
+.layui-laydate .laydisabled:hover{
+    background:none !important; 
+    color: #d2d2d2 !important; 
+    cursor: not-allowed !important;
+     -moz-user-select: none; 
+     -webkit-user-select: none; 
+     -ms-user-select: none;
+}

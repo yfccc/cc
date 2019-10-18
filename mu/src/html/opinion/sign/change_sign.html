@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>新增/编辑公告</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .sign-title {
+            height: 120px;
+            border-bottom: 1px solid #ccc;
+            min-width: 1100px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .sign-content {
+            min-width: 1100px;
+            height: 550px;
+        }
+
+        .layui-card {
+            box-shadow: none;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;background:#fff;">
+    <!-- <div class="sub-title"> 
+    <a href="./sign.html" class="layui-btn layui-btn-primary" style="width:65px;height:30px;float:right;line-height:30px;margin-right:20px;margin-top:-4px;">返回</a>
+</div> -->
+    <div class="layui-fluid " style="padding-right: 7px!important;">
+        <div class="layui-card" id="layui-card" style="margin-top:15px;min-width: 1100px;">
+            <div class="layui-card-body" id="formDiv" style="padding: 12px 0px 9px 0px">
+                <form class="layui-form" lay-filter="JK" id="JK">
+                    <div class="layui-form-item  oneTop" style="margin-bottom: 12px">
+                        <div class="layui-row" style="margin-bottom: 15px;">
+                            <label class="layui-form-label"><span> * </span>公告标题：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" required lay-verify="required" id="noticeTitle" name="noticeTitle"
+                                    autocomplete="off" class="layui-input"
+                                    onpropertychange="if(value.length>30) value=value.substr(0,30)" maxlength="30">
+                            </div>
+                        </div>
+                        <div class="layui-row" style="width: 590px;margin-bottom:15px;">
+                            <label class="layui-form-label"><span> * </span>接收对象：</label>
+                            <div class="layui-input-block" style="display: inline-block;margin-left:0;">
+                                <input type="radio" lay-filter="receiveobj" name="noticeTarget" value="all" title="全部"
+                                    checked>
+                                <input type="radio" lay-filter="receiveobj" name="noticeTarget" value="assign"
+                                    title="指定机构">
+                            </div>
+                            <div id="choiceobj" style="display:block;float:right;">
+
+                                <div class="layui-input-inline" id="select_org">
+                                    <input type="text" id="prev_org" name="modelName" disabled placeholder="请指定机构"
+                                        autocomplete="off" class="layui-input">
+                                    <i class="layui-icon layui-icon-search"
+                                        style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux"></div>
+
+                            </div>
+                        </div>
+                        <div class="layui-row" style="min-width: 1200px;">
+                            <label class="layui-form-label"><span> * </span>公告内容：</label>
+                            <div class="layui-input-block" id="richtextparent" style="display: inline-block;margin-left:0;min-width: 980px;">
+                                <textarea id="demo" style="display: none;"
+                                    onpropertychange="if(value.length>500) value=value.substr(0,500)"
+                                    maxlength="500" lay-verify="content" placeholder="请输入公告内容，最多500个字符"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-layout-admin">
+                        <div class="layui-input-block">
+                            <div class="layui-footer" style="left: 0;z-index: 4;padding: 0px;height: 64px;">
+                                <div class="tijiao">
+                                    <button type="button" class="layui-btn"
+                                        style="width: 140px; height: 40px;background-color: #2F4056;" id="saveRichText"
+                                        lay-submit>保存</button>
+                                    <button type="button" class="layui-btn"
+                                        style="width: 140px; height: 40px;background-color: #2F4056;"
+                                        id="releaseRichText">发布</button>
+                                    <button type="button" class="layui-btn layui-btn-primary"
+                                        style="width: 140px; height: 40px;" id="resetRichText">重置</button>
+                                    <a href="./sign.html" class="layui-btn layui-btn-primary"
+                                        style="width: 140px; height: 40px;">返回</a>
+                                </div>
+                                <!-- 为了兼容在ie8下面提交中字体模糊的问题-->
+                                <div class="tijiaozhong" style="display: none">
+                                    <button type="button" class="layui-btn"
+                                        style="width: 140px; height: 40px;background-color: #2F4056;">提交中...</button>
+                                    <button type="reset" class="layui-btn layui-btn-primary"
+                                        style="width: 140px; height: 40px;" onclick="cleanFrom();">重置</button>
+                                    <input type="hidden" id="formData">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- <div style="margin-bottom: 30px">
+                <button type="button" class="layui-btn layui-btn-normal" id="saveRichText">保存</button>
+                <button type="button" class="layui-btn layui-btn-normal" id="releaseRichText">发布</button>
+                <button type="button" class="layui-btn layui-btn-normal" id="resetRichText">重置</button>
+            </div> -->
+
+        </div>
+    </div>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+     <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/opinion/sign/change_sign.js"></script>
+    <script src="/script/layui_config.js"></script>
+</body>
+
+</html>

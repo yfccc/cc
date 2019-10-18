@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>调用刑专统计</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-form-label {
+            width: 70px;
+        }
+
+        .layui-table-tool-panel {
+            max-height: 400px;
+        }
+        .tabletitle {
+            background-color: transparent;
+            color: #333333;
+            display: inline-block;
+            height: 38px;
+            line-height: 38px;
+            white-space: nowrap;
+            text-align: center;
+            font-size: 14px;
+            border: none;
+            border-radius: 2px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;background: #fff;">
+    <input type="hidden" value="" id="querytype">
+    <div class="layui-fluid " style="padding-top: 0px;">
+        <div class="layui-card" id="layui-card">
+            <div class="layui-card-body" id="formDiv" style="padding: 12px 0px 9px 0px">
+                <form class="layui-form" lay-filter="JK" id="loginfo">
+                    <div class="layui-form-item  oneTop" style="margin-bottom: 12px">
+                        <div class="layui-inline">
+                            <label class="layui-form-label" autocapitalize="off" style="width: 110px;"><span> *
+                                </span>请选择起止时间</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" name="sjsj" id="log-laydate-range-date"
+                                    placeholder="请选择起止时间" autocomplete="off" lay-verify="required">
+                            </div>
+                        </div>
+                        <!-- <div class="layui-inline">
+                            <label class="layui-form-label">调用类型：</label>
+                            <div class="layui-input-inline">
+                                <select name="requestType" class="select" id="requestType" lay-filter="requestType">
+                                    <option value="" selected="">请选择</option>
+                                    <option value="0">核验</option>
+                                    <option value="1">注册</option>
+                                    <option value="2">识别</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="layui-inline" style="margin-right: 0px">
+                            <label class="layui-form-label">组织机构：</label>
+                            <div class="layui-input-inline" id="select_org">
+                                <input type="text" id="prev_org" name="jgmc" disabled placeholder="请指定机构" autocomplete="off"
+                                    class="layui-input">
+                                <i class="layui-icon layui-icon-search"
+                                    style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="btnParent" style="text-align: center;">
+                            <button class="layui-btn" id="search_btn" data-type="reload" type="button"
+                                style="background-color: #2F4056;" lay-submit lay-filter="searchinfo">查询</button>
+                            <button type="button" id="reset_btn" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-fluid bottom-content table-layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" id="bgDIV">
+                    <ul class="layui-tab-title" id="echarsList" style="font-weight:bold">
+                        <li class="layui-this" data-type="zhe">注册</li>
+                        <li class="" data-type="zhu">查验</li>
+                        <li class="" data-type="bing">核验</li>
+                    </ul>
+                    <div class="layui-tab-content" style="height: 700px;">
+                        <div class="layui-tab-item layui-show">
+                            <!-- 注册 -->
+                            <div id="charts_register"></div>
+                            <div class="layui-fluid table-layui-fluid">
+                                <div class="layui-card" style="margin-top:15px;">
+                                    <div class="layui-card-body  tableBody" style="padding: 0px">
+                                        <div class="layui-row layui-col-space15  tableBOttom"
+                                            style="margin-top:-5px;margin-bottom: 5px;">
+                                            <div class="layui-col-md12">
+                                                <div class="layui-card layui-cards" style="box-shadow: 0 0 0 0">
+                                                    <div class="layui-card-body" id="box_height1"
+                                                        style="padding:5px 15px 10px">
+                                                        <table class="layui-hide layui-table" id="charts_register_me">
+                                                        </table>
+                                                        <table class="layui-hide layui-table" id="charts_register_all">
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item">
+                            <!-- 查验 -->
+                            <div id="charts_inspection"></div>
+                            <div class="layui-fluid table-layui-fluid">
+                                <div class="layui-card" style="margin-top:15px;">
+                                    <div class="layui-card-body  tableBody" style="padding: 0px">
+                                        <div class="layui-row layui-col-space15  tableBOttom"
+                                            style="margin-top:-5px;margin-bottom: 5px;">
+                                            <div class="layui-col-md12">
+                                                <div class="layui-card layui-cards" style="box-shadow: 0 0 0 0">
+                                                    <div class="layui-card-body" id="box_height"
+                                                        style="padding:5px 15px 10px">
+                                                        <table class="layui-hide layui-table" id="charts_inspection_me">
+                                                        </table>
+                                                        <table class="layui-hide layui-table"
+                                                            id="charts_inspection_all">
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item ">
+                            <!-- 核验 -->
+                            <div id="charts_Verification"></div>
+                            <div class="layui-fluid table-layui-fluid">
+                                <div class="layui-card" style="margin-top:15px;">
+                                    <div class="layui-card-body  tableBody" style="padding: 0px">
+                                        <div class="layui-row layui-col-space15  tableBOttom"
+                                            style="margin-top:-5px;margin-bottom: 5px;">
+                                            <div class="layui-col-md12">
+                                                <div class="layui-card layui-cards" style="box-shadow: 0 0 0 0">
+                                                    <div class="layui-card-body" id="box_height"
+                                                        style="padding:5px 15px 10px">
+                                                        <table class="layui-hide layui-table"
+                                                            id="charts_Verification_me">
+                                                        </table>
+                                                        <table class="layui-hide layui-table"
+                                                            id="charts_Verification_all">
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="table-hreader1">
+        <!-- 兼容没有按钮右边筛选列上移问题 -->
+    <div class="layui-btn-container">
+        <div class="tabletitle">当前机构</div>
+    </div>
+    </script>
+    <script type="text/html" id="table-hreader2">
+        <!-- 兼容没有按钮右边筛选列上移问题 -->
+    <div class="layui-btn-container">
+        <div class="tabletitle">下一级子机构</div>
+    </div>
+    </script>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/script/echarts/echarts.js"></script>
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/gather_identify_statistical/penalty_sts/penalty_sts.js"></script>
+</body>
+
+</html>

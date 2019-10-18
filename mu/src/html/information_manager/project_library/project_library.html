@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>专题库管理</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-table,
+        .layui-table-view {
+            margin: 0 auto;
+        }
+
+        .layui-fluid {
+            padding: 0px 7px 0px 0px !important;
+        }
+
+        .layui-form-label {
+            width: 43px;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <input type="hidden" value="" id="querytype">
+    <div class="layui-fluid " style="padding-top: 0px;margin-bottom: 17px">
+        <div class="layui-card" id="layui-card">
+            <div class="layui-card-body" id="formDiv" style="padding: 18px 0px 1px 0px">
+                <form class="layui-form" lay-filter="JK" id="project_lib_form">
+                    <div class="layui-form-item  oneTop" style="margin-bottom: 12px">
+                        <div class="layui-inline">
+                            <label class="layui-form-label" autocapitalize="off">名称：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" class="layui-input" name="name" placeholder="" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="layui-inline">
+                            <button class="layui-btn download" lay-submit lay-filter="project_lib_filter"
+                                type="button">查询</button>
+                            <button type="button" id="project_lib_reset_btn"
+                                class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-fluid  table-layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-body  tableBody" style="padding: 0px">
+                <div class="layui-row layui-col-space15  tableBOttom" style="margin-bottom: 5px;">
+                    <div class="layui-col-md12">
+                        <div class="layui-card layui-cards " style="box-shadow: 0 0 0 0">
+                            <div class="layui-card-body" id="box_height">
+                                <table id="project_tab" class="layui-table hhh" lay-filter="project_tab_filter">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <button type="button" id="test_add_btn" class="layui-btn layui-btn-primary">新增</button>
+    <button type="button" id="test_edit_btn" class="layui-btn layui-btn-primary">编辑</button>
+    <a href="./project_person_manage.html" class="layui-btn layui-btn-primary">专题库管理</button> -->
+    <!-- 表格头部工具栏监听 -->
+    <script type="text/html" id="download">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm download" lay-event="add">新增</button>
+                <button class="layui-btn layui-btn-sm download" lay-event="export">导出资源包</button>
+                <!-- <button class="layui-btn layui-btn-sm " lay-event="import" id="importfile">导入</button> -->
+                <!-- <button class="layui-btn layui-btn-sm " lay-event="export_all">全部导出资源包</button> -->
+            </div>
+        </script>
+    <!--表格里面操作按钮按钮 -->
+    <script type="text/html" id="edit">
+                <a style="color:#1E9FFF;cursor:pointer;margin-left:5px;" lay-event="person_manage">人员管理</a>
+                <a style="color:#1E9FFF;cursor:pointer;margin-left:5px;" lay-event="edit">编辑</a>
+                <a style="color:#1E9FFF;cursor:pointer;margin-left:5px;" lay-event="del">删除</a>
+        </script>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/information_manager/project_library/project_library.js"></script>
+</body>
+
+</html>

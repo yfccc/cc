@@ -1,0 +1,104 @@
+html{
+   height: 100%;
+}
+body{
+   height: 100%;
+   background: #fff
+}
+.people_lable {
+   height: 40px;
+   width: 100%;
+   margin-bottom: 15px;
+}
+
+.people_lable .layui-input-block {
+   padding-top: 5px;
+}
+
+.people_lable_item {
+   width: 82px;
+   height: 30px;
+   border: 1px solid #D7D7D7;
+   box-sizing: border-box;
+   border-radius: 5px;
+   float: left;
+   margin-right: 5px;
+   background: #F9F9F9;
+}
+
+.people_lable_item span {
+   display: inline-block;
+   vertical-align: middle;
+   text-align: center;
+   color: #999999;
+   font-size: 12px;
+   height: 100%;
+   line-height: 30px;
+}
+
+.people_lable_item .imId{
+   width: 60px;
+   border-right: 1px solid #D7D7D7;
+   box-sizing: border-box;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   overflow: hidden;
+}
+
+.people_lable_item  .layui-icon-close{
+   width: 19px;
+   font-weight: bold;
+}
+
+.people_lable_item  .layui-icon-close:hover {
+   color: #2F4056;
+   cursor: pointer;
+}
+
+.add_lable {
+   width: 30px;
+   height: 30px;
+   text-align: center;
+   background: #2F4056;
+   color: #fff;
+   float: left;
+   line-height: 30px;
+   margin-top: 5px;
+
+}
+
+.add_lable:hover {
+   cursor: pointer;
+}
+
+.hied {
+   display: none;
+}
+
+.show {
+   display: block;
+}
+
+.add_lable_contet {
+   padding-top: 5px;
+   height: 33px !important;
+}
+
+.imId {
+   text-indent: 5px;
+}
+.layui-icon-face-surprised{
+   color: red  !important;
+   font-size:26px !important;
+   font-weight:bold !important;  
+}
+.layui-layer-content{
+   overflow:  hidden !important;  
+}
+.layui-form-danger+.layui-form-select .layui-input,
+.layui-form-danger {
+    border-color: #FF5722 !important;
+}
+.inputSpan{
+   /* display: block; */
+}

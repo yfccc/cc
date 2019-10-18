@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>采集记录查询</title>
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <link rel="stylesheet" href="/css/gather_indentfy_record/gather_record_list.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-table-tool .layui-table-tool-self .layui-table-tool-panel {
+            height: 450px;
+        }
+
+        .layui-form-item .layui-inline {
+            margin-right: 0px;
+        }
+
+        #plcxf {
+            height: 360px;
+            padding-top: 139px;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <input type="hidden" value="" id="querytype">
+    <div class="layui-fluid" style="width: 99.6%">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="layui-tab layui-tab-brief" lay-filter="component-tabs-brief">
+                    <div class="layui-tab-content" style="padding:7px 0px 0px 0px">
+                        <div class="layui-tab-item layui-show" id="formDiv">
+                            <form class="layui-form" action="" id="gather_record_form" lay-filter="component-form-group"
+                                style="margin-top:-5px">
+                                <div class="layui-form-item" style="margin-bottom:0px">
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan  qssj">请选择起止时间</span>
+                                        <label class="layui-form-label">采集时间：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" class="layui-input" autocomplete="off"
+                                                id="test-laydate-range-date" placeholder="请选择起止时间">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">姓名：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="sfxxcjXm" id="bcjr_xm" autocomplete="off"
+                                                onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                                maxlength="50" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">证件类型：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="sfxxcjCyzjCyzjdm" id="bcjr_zjlx" lay-search>
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">性别：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="sfxxcjXbdm" id="bcjr_xb" lay-search>
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">人员分类：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="sfxxcjRyfl" id="bcjr_ryfl" lay-search>
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">民族：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="sfxxcjMzdm" id="bcjr_mz" lay-search>
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">国籍：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="sfxxcjGjdm" id="bcjr_gj" lay-search>
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">采集编号：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" id="cjbh" name="hmcjCjbh" autocomplete="off"
+                                                class="layui-input"
+                                                onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                                maxlength="50">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">操作人：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="userRealname" id="czr" autocomplete="off"
+                                                onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                                maxlength="50" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline postion">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">数据来源：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="platform" id="sjly" lay-search>
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">设备SN码：</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="deviceSn"
+                                                onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                                maxlength="50" autocomplete="off" class="layui-input  sbSN">
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label">采集结果：</label>
+                                        <div class="layui-input-inline">
+                                            <select name="hmcjPpjgbdm" id="cjjg" lay-search="" autocomplete="off">
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label ">人员标签：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="imName" id="yrbq" class="bcjr_bq" lay-search=""
+                                                autocomplete="off">
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">组织机构：</label>
+                                        <div class="layui-input-inline" id="select_org" style="cursor: pointer;">
+                                            <input type="text" id="jgxxGajgjgdm" name="jgxxGajgjgdm"
+                                                style="display: none;">
+                                            <input type="text" autocomplete="off" id="jgxxGajgjgname"
+                                                class="layui-input" style="pointer-events: none;">
+                                            <i class="layui-icon layui-icon-search"
+                                                style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <span class="inputSpan">请选择</span>
+                                        <label class="layui-form-label ">存疑类型：</label>
+                                        <div class="layui-input-inline selectlayui-input-block">
+                                            <select name="hmcjCylx" id="cylx" lay-search="" autocomplete="off">
+                                                <option value="" selected=""></option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div id="subDIV" style="float: left">
+                                        <button class="layui-btn download" lay-filter="gather_record_filter" lay-submit
+                                            id="component-form-demo1" type="button">查询</button>
+                                        <button type="button" id="gather_record_btn_reset"
+                                            class="layui-btn layui-btn-primary">重置</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-fluid">
+        <!--批量查询大框-->
+        <div class="layui-card bottom_content" id="bottom_content"
+            style=" margin-top: 10px;width: 100% !important;background-color: #f2f2f2 !important;box-shadow: none;">
+            <div class="left-menu left-menu-p-big" id="big">
+                <div class="left-menu-header">
+                    <span>批量查询</span>
+                    <i class="layui-icon layui-icon-prev" id="left_menu_big"></i>
+                </div>
+                <div class="left-menu-textarea">
+                    <textarea name="bcjr_zjhm" id="cards" placeholder="请输入证件号，每行一个"
+                        class="layui-textarea   span-layui-textarea"
+                        onpropertychange="if(value.length>800) value=value.substr(0,800)" maxlength="800"></textarea>
+                </div>
+            </div>
+            <div class="left-menu left-menu-p-smor" id="smor">
+                <div class="left-menu-header">
+                    <i class="layui-icon layui-icon-next" id="left_menu_somre"></i>
+                </div>
+                <div class="left-menu-textarea  left-menu-smor">
+                    <div id="plcxf">
+                        <p>批</p>
+                        <p>量</p>
+                        <p>查</p>
+                        <p>询</p>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom_table" class="layui-card-body  lastTble">
+                <div class="layui-row">
+                    <div class="tablePaddingBottom">
+                        <div class="layui-card" style="box-shadow: 0 0 0 0;">
+                            <div class="layui-card-body" id="box_height" style="padding: 10px">
+                                <table class="layui-hide" id="gather_record_tab" lay-filter="gather_record_tab_filter"
+                                    style="overflow:hidden;"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头工具栏 -->
+    <script type="text/html" id="download">
+                <div class="layui-btn-container">
+                    <button class="layui-btn layui-btn-sm download" lay-event="download">导出</button>
+                </div>
+            </script>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/gather_identify_record/gather_record_list/gather_record_list.js"></script>
+</body>
+
+</html>

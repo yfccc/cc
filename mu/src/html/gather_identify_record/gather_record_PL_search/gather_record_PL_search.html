@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>采集记录批量查询</title>
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-table-tool .layui-table-tool-self .layui-table-tool-panel {
+            max-height: 450px;
+        }
+
+        #bottom_table {
+            position: absolute;
+            top: 0px;
+            left: 280px;
+            margin-left: 10px;
+        }
+
+        .layui-form-label {
+            width: 70px;
+            padding: 9px 0px;
+        }
+
+        .layui-input,
+        .layui-textarea {
+            width: 178px;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden;">
+    <input type="hidden" value="" id="querytype">
+    <div class="layui-fluid" style="width: 99.6%" id="LAY-component-grid-all">
+        <div class="layui-row">
+            <div class="layui-col-md2" style="width: 278.83px; height: 850px;">
+                <div class="layui-card" style="height: 100%;">
+                    <div class="layui-form" lay-filter="component-form-group">
+
+                        <div class="layui-card-body">
+                            <form id="gather_record_form">
+                                <div class="layui-form-item" pane="">
+                                    <div class="layui-col-md12">
+                                        <div class="layui-row">
+                                            <div class="layui-col-md6">
+                                                <input type="checkbox" value="1" name="cjjg" lay-skin="primary"
+                                                    title="采集成功" checked="">
+                                                <input type="checkbox" value="4" name="cjjg" lay-skin="primary"
+                                                    title="人员已注册" checked="">
+                                            </div>
+                                            <div class="layui-col-md6">
+                                                <input type="checkbox" value="6" name="cjjg" lay-skin="primary"
+                                                    title="采集失败" checked="">
+                                                <input type="checkbox" value="5" name="cjjg" lay-skin="primary"
+                                                    title="无法采集" checked="">
+                                            </div>
+                                        </div>
+                                        <div class="layui-row">
+                                            <input type="checkbox" value="2" name="cjjg" lay-skin="primary"
+                                                title="证件信息不一致（证件不一致）" checked="">
+                                        </div>
+                                        <div class="layui-row">
+                                            <input type="checkbox" value="3" name="cjjg" lay-skin="primary"
+                                                title="证件信息不一致（虹膜不一致）" checked="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layui-card" style="box-shadow: none">
+                                    <div class="layui-card-header" style="border-bottom: none;text-align: center;">
+                                        <div class="layui-inline">
+                                            <!-- <label>输入身份证号 </label>-->
+                                            <div class="layui-input-inline">
+                                                <button class="layui-btn" data-type="reload" lay-submit
+                                                    lay-filter="gather_record_pl_filter" id="component-form-demo1"
+                                                    style="width: 64px;height: 34px;line-height: 25px;padding: 0px 9px 0px 9px;background-color: #2F4056">查询</button>
+                                                <a id="reset_btn" class="layui-btn layui-btn-primary">重置</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-card-body layui-row layui-col-space10">
+                                        <div class="layui-col-md12" style="margin-left:-15px;">
+                                            <span class="inputSpan textareaSpan">请输入证件号，每行一个</span>
+                                            <textarea name="cards" id="cards" placeholder="请输入证件号，每行一个"
+                                                class="layui-textarea"
+                                                onpropertychange="if(value.length>800) value=value.substr(0,800)"
+                                                maxlength="800"
+                                                style="width:249px;height:645px;resize: unset;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md10" id="bottom_table">
+                <div class="layui-card">
+                    <div class="layui-card-body  tableBody" style="padding: 0px">
+                        <div class="layui-card" style="box-shadow: 0 0 0 0;">
+                            <div class="layui-card-body" id="box_height">
+                                <table class="layui-hide" id="record_pl_search" lay-filter="pl_tab"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--头工具栏 -->
+    <script type=" text/html" id="download">
+                                            <div class="layui-btn-container">
+                                                <button class="layui-btn layui-btn-sm download"
+                                                    lay-event="export">导出</button>
+                                            </div>
+                                            </script>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/gather_identify_record/gather_record_PL_search/gather_record_PL_search.js"></script>
+</body>
+
+</html>

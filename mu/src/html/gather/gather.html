@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>虹膜采集</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <link rel="stylesheet" href="/css/gather/gather.css">
+    <style>
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        body {
+            overflow-x: auto !important;
+        }
+
+        .layui-layer-btn- {
+            border: 1px solid #EEEEEE;
+            padding: 10px !important;
+        }
+
+        .layui-layer-btn- .layui-layer-btn0 {
+            margin-top: 0px !important;
+        }
+
+        .layui-layer-btn- .layui-layer-btn1 {
+            margin-top: 0px !important;
+        }
+
+        .shows {
+            display: block;
+        }
+
+        .hiddens {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="hidden" id="querytype" />
+    <div id="age"></div>
+    <div class="layui-fluid" style="min-width: 1350px">
+        <div class="layui-row layui-col-space15" style="margin:0px">
+            <div class="layui-card" style="min-width: 1300px" id="layui-card">
+                <div class="layui-card-header">人员信息<div style="float: right;"><span style="color: red"> * </span>为必填项
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    <form class="layui-form" lay-filter="component-form-element" id="submitForm">
+                        <div class="layui-col-xs6   layui-card-item  firstbigitem" style="clear: both;">
+                            <div class="layui-form-item   left-top" style="margin-bottom: 0px;">
+                                <div class="layui-col-sm6   first_item  layui-form-item_first_item "
+                                    style="width:400px;float: left">
+                                    <div class="layui-form-item" style="padding-bottom: 15px;">
+                                        <label class="layui-form-label lableWidth"><span> * </span>人员分类：</label>
+                                        <div
+                                            class="layui-input-block  selectlayui-input-block  layui-input-margin-left firstIinputitem  bixuan">
+                                            <span class="inputSpan  cardInputSpan">请选择</span>
+                                            <select name="bcjr_ryfl" class="select" lay-filter="bcjr_ryfl"
+                                                lay-verify="required" id="bcjr_ryfl" lay-search="" autocomplete="off">
+                                                <option value="" selected></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item" style="padding-bottom: 15px;">
+                                        <label class="layui-form-label lableWidth"><span> * </span>姓名：</label>
+                                        <div class="layui-input-block layui-input-margin-left　firstIinputitem  bixuan">
+                                            <input type="text" maxlength="50" id="bcjr_xm" name="bcjr_xm"
+                                                lay-verify="required|bcjr_xm" autocomplete="off"
+                                                class="layui-input   redItem">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item" style="padding-bottom: 15px;">
+                                        <label class="layui-form-label lableWidth lableWidth"><span> *
+                                            </span>证件类型：</label>
+                                        <div
+                                            class="layui-input-block selectlayui-input-block layui-input-margin-left 　firstIinputitem bixuan">
+                                            <span class="inputSpan">请选择</span>
+                                            <select name="bcjr_zjlxdm" class="select" lay-filter="bcjr_zjlxdm"
+                                                lay-search="" lay-verify="required|bcjr_zjlxdm" id="bcjr_zjlxdm"
+                                                autocomplete="off">
+                                                <option value="" selected>请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label lableWidth "><span> * </span>证件号：</label>
+                                        <div class="layui-input-block layui-input-margin-left 　firstIinputitem bixuan">
+                                            <input type="text" name="bcjr_zjhm" id="bcjr_zjhm"
+                                                lay-verify="required|bcjr_zjhm" autocomplete="off"
+                                                class="layui-input redItem select" maxlength="18">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--身份证图片-->
+                                <div class="layui-col-sm6  first_item  layui-form-item_last_item "
+                                    style="width: 160px;padding: 0px;float: right;">
+                                    <div class="layui-form-item  left-top-padding ">
+                                        <div style="width:150px;"><img id="imageCard" src="/img/card-img.png"
+                                                style="width:150px;"></div>
+                                        <div style="padding-top: 15px;">
+                                            <!-- onClick="hxgc_ReadIDCard();" -->
+                                            <button type="button"
+                                                style="width:150px;background-color: #2F4056;margin-right: 10px;"
+                                                class="layui-btn" id="readCard"><img id="bcjr_zjzp"
+                                                    src="/img/card-btn2.png">&nbsp;&nbsp;读二代证</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 人员标签 -->
+                            <div class="people_lable  layui-col-sm6">
+                                <label class="layui-form-label lableWidth lableWidth">人员标签：</label>
+                                <div class="layui-input-inline selectlayui-input-inline   add_lable_contet  layui-input-margin-left  bixuan"
+                                    style="height: 38px;float: left;">
+                                    <!-- <div class="people_lable_item"> 
+                                        <span>标签</span>
+                                        <span class="layui-icon layui-icon-close"></span>
+                                    </div> -->
+                                </div>
+                                <div class="people_lable_item  add_lable " title="点击添加人员标签"><i
+                                        class="layui-icon  layui-icon-add-1"></i></div>
+                            </div>
+                            <div class="layui-form-item xbwidthParpent">
+                                <div class="layui-col-xs6  xbwidth ">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label lableWidth"><span> * </span>性别：</label>
+                                        <div
+                                            class="layui-input-block selectlayui-input-block layui-input-margin-left  bixuan">
+                                            <span class="inputSpan">请选择</span>
+                                            <select name="bcjr_xb" lay-filter="bcjr_xb" lay-search=""
+                                                lay-verify="required" id="bcjr_xb" lay-search="" class="select"
+                                                autocomplete="off">
+                                                <option value="" selected>请选择</option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs6  xbwidth">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label lableWidth"><span> * </span>国籍：</label>
+                                        <div
+                                            class="layui-input-block  selectlayui-input-block layui-input-margin-left bixuan ">
+                                            <span class="inputSpan">请选择</span>
+                                            <select name="bcjr_gj" lay-filter="bcjr_gj" lay-search=""
+                                                lay-verify="required" lay-search="" class="select" id="bcjr_gj"
+                                                autocomplete="off">
+                                                <option value="" selected>请选择</option>
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="layui-form-item  xbwidthParpent">
+                                <div class="layui-col-xs6  xbwidth">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label lableWidth"><span> * </span>民族：</label>
+                                        <div
+                                            class="layui-input-block  selectlayui-input-block  layui-input-margin-left  bixuan">
+                                            <span class="inputSpan">请选择</span>
+                                            <select name="bcjr_mz" class="select" lay-filter="bcjr_mz" lay-search=""
+                                                lay-verify="required" id="bcjr_mz" lay-search="" autocomplete="off">
+                                                <option value="" selected>请选择</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layui-col-xs6  xbwidth">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label lableWidth"><span> * </span>出生日期：</label>
+                                        <div class="layui-input-block layui-input-margin-left  bixuan">
+                                            <span class="inputSpan dateSpan">请选择</span>
+                                            <input type="text" name="bcjr_csrq" id="bcjr_csrq"
+                                                lay-verify="bcjr_csrq|required" placeholder="年-月-日" autocomplete="off"
+                                                class="layui-input  redItem   select" lay-verify="required">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" style="padding-bottom: 15px;">
+                                <span class="layui-btn  layui-btn-xs  more layui-bg-cyan" style="float: right"><i
+                                        class="layui-icon layui-icon-down"></i>更多</span>
+                            </div>
+                            <div class="layui-form-item  layui-form-item-hied  hied" style="padding-bottom: 15px;">
+                                <label class="layui-form-label lableWidth">户籍地址：</label>
+                                <div class="layui-input-block layui-input-margin-left ">
+                                    <input type="text" name="bcjr_hjdz" id="bcjr_hjdz" lay-verify="bcjr_hjdz"
+                                        autocomplete="off" class="layui-input" maxlength="100">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item  layui-form-item-hied  hied" style="padding-bottom: 15px;">
+                                <label class="layui-form-label lableWidth">证件签发机关：</label>
+                                <div class="layui-input-block layui-input-margin-left ">
+                                    <input type="text" name="bcjr_qfjg" id="bcjr_qfjg" lay-verify="bcjr_qfjg"
+                                        autocomplete="off" class="layui-input" maxlength="100">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item  layui-form-item-hied  hied " style="padding-bottom: 15px;">
+                                <label class="layui-form-label lableWidth">证件有效期：</label>
+                                <div class="layui-input-block layui-input-margin-left  feibixuan">
+                                    <span class="inputSpan  yxqPlesholder   select">年-月-日 ~ 年-月-日</span>
+                                    <!-- <input type="text" name="bcjr_yxqx" id="bcjr_yxqx" lay-verify="bcjr_yxqx" placeholder="年-月-日&nbsp;&nbsp;~&nbsp;&nbsp;年-月-日" autocomplete="off" class="layui-input"> -->
+                                    <input type="text" name="bcjr_yxqx_date" id="bcjr_yxqx_date"
+                                        lay-verify="bcjr_yxqx_date" placeholder="年-月-日&nbsp;&nbsp;~&nbsp;&nbsp;年-月-日"
+                                        autocomplete="off" class="layui-input shows">
+                                    <input type="text" name="bcjr_yxqx" id="bcjr_yxqx" lay-verify="bcjr_yxqx"
+                                        placeholder="年-月-日&nbsp;&nbsp;~&nbsp;&nbsp;年-月-日" autocomplete="off"
+                                        class="layui-input  hiddens " disabled style="color: #000;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item  layui-form-item-hied   hied" style="padding-bottom: 15px;">
+                                <label class="layui-form-label lableWidth">现居住地址：</label>
+                                <div class="layui-input-block layui-input-margin-left ">
+                                    <input type="text" name="bcjr_jzdz" id="bcjr_jzdz" lay-verify="bcjr_jzdz"
+                                        autocomplete="off" class="layui-input" maxlength="100">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item layui-form-item-hied   hied" style="padding-bottom: 15px;">
+                                <label class="layui-form-label lableWidth">手机号码：</label>
+                                <div class="layui-input-block layui-input-margin-left ">
+                                    <input type="text" name="bcjr_sjhm1" id="bcjr_sjhm1" lay-verify="bcjr_sjhm1"
+                                        autocomplete="off" class="layui-input" maxlength="20">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item  layui-form-item-hied   hied">
+                                <label class="layui-form-label lableWidth">其他联系电话：</label>
+                                <div class="layui-input-block  layui-input-margin-left ">
+                                    <input type="text" name="bcjr_sjhm2" lay-verify="bcjr_sjhm2" autocomplete="off"
+                                        class="layui-input" maxlength="20">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-xs6   layui-card-item  firstbigitem">
+                            <!-- 显示图片部分 -->
+                            <div class="layui-form-item" style="margin-top: 0px;">
+                                <div class="layui-input-block" style="width: 500px;margin-left:8%;">
+                                    <div style="width:45%; height: 168px; float: left;background-color:#CCCCCC">
+                                        <img id="rightEye" src="/img/eye.png" style="width:100%; height: 168px;">
+                                        <span id="rightEyepf"
+                                            style="width: 200px;text-align:center;display: block">右眼</span>
+                                    </div>
+                                    <div style="width:45%; height: 168px; float: right;background-color:#CCCCCC">
+                                        <img id="leftEye" src="/img/eye.png" style="width:100%; height: 168px;">
+                                        <span id="leftEyepf"
+                                            style="width: 200px;text-align:center;display: block">左眼</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 开始采集 -->
+                            <div class="layui-form-item" style="margin-top: 30px;">
+                                <div class="layui-input-block" style="margin-left:8%;">
+                                    <button type="button" class="layui-btn" id="kscj"
+                                        style="float: left;width:150px;background-color: #2F4056">
+                                        <img src="/img/iris-btn.png" style="width:30px;">&nbsp;&nbsp;开始采集
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- <div class="layui-form-item" style="padding-bottom: 15px;width:70% ">
+                                <label class="layui-form-label lableWidth">采集场地：</label>
+                                <div class="layui-input-block  selectlayui-input-block  layui-input-margin-left firstIinputitem  bixuan">
+                                    <span class="inputSpan">请选择</span>
+                                    <select name="cjcd" class="cjcd"  lay-filter="cjcd" lay-verify="" id="cjcd"  lay-search="" autocomplete="off">
+                                        <option value="" selected></option>
+                                    </select>
+                                </div>
+                            </div> -->
+
+
+                            <div class="layui-form-item" pane="" style="padding-bottom: 15px;padding-top: 19px;">
+                                <label class="layui-form-label">无法采集：</label>
+                                <div class="layui-input-block bixuan">
+                                    <div class="layui-col-xs1">
+                                        <input type="checkbox" lay-skin="primary" value="-1" name="cjztbox"
+                                            id="cjztCheckbox" lay-filter="cjzt">
+                                        <!--采集状态暂时不入库-->
+                                        <input type="hidden" name="cjzt" id="cjzt" value="0">
+                                    </div>
+                                    <div class="layui-col-xs11 wfcj" id="wfcjParpent"
+                                        style="display: none;width: 350px;">
+                                        <span class="inputSpan  cardInputSpan" style="left:20px">请选择</span>
+                                        <select name="wfcj" class="select" lay-filter="wfcj" id="wfcj" lay-verify="wfcj"
+                                            lay-search="">
+                                            <option value="" selected>请选择</option>
+                                            <option value=""></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">备注：</label>
+                                <div class="layui-input-block feibixuan" style="width: 500px;">
+                                    <span class="inputSpan  textareaSpan  cardInputSpan">请输入备注信息</span>
+                                    <textarea name="cjbz" id="cjbz" lay-filter="cjbz" placeholder="请输入备注信息"
+                                        class="layui-textarea"
+                                        onpropertychange="if(value.length>200) value=value.substr(0,200)"
+                                        maxlength="200" style="float:left;width:81%"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="cjbh" name="cjbh">
+                        <!--采集编号-->
+                        <input type="hidden" id="cjr_name" value="">
+                        <!--采集人姓名-->
+                        <input type="hidden" name="zjzp" id="zjzp"> <!-- 证件照片Base64 -->
+                        <input type="hidden" name="lrbz" id="lrbz" value="2">
+                        <!-- 录入标志 , 1: 读取录入, 2: 手工录入, 3: 敬宗录入.  说明: 一最后一次信息填写方式为准 -->
+                        <input type="hidden" id="dsycjbz" name="dsycjbz">
+                        <!--3; // 双眼采集 2; // 左眼采集 1; // 右眼采集-->
+                        <input type="hidden" id="qzcjbz" name="qzcjbz">
+                        <!--强制采集-->
+                        <input type="hidden" id="cjtphs" name="cjtphs">
+                        <!--采集图片耗时-->
+                        <input type="hidden" id="imageJson" name="imageJson" value=""> <!-- 采集图片信息 -->
+                        <input type="hidden" id="templageJson" name="templageJson" value=""> <!-- 采集特征信息 -->
+                        <input type="hidden" id="sbxh" name="sbxh">
+                        <!--设备型号-->
+                        <input type="hidden" id="sbbh" name="sbbh">
+                        <!--设备编号-->
+                        <input type="hidden" id="sbcsdm" name="sbcsdm">
+                        <!--设备厂商代码-->
+                        <input type="hidden" name="updVersion" id="updVersion"><!-- 设备最新版本号 -->
+                        <input type="hidden" name="xb"> <!-- 性别-->
+                        <input type="hidden" name="zjlx"><!-- 证件类型-->
+                        <input type="hidden" name="mz"><!-- 民族-->
+                        <input type="hidden" name="gj"><!-- 国籍 -->
+                        <input type="hidden" name="ryfl"><!-- 人员分类 -->
+                        <input type="hidden" name="leftCQcode" id="leftCQcode"><!-- 左眼残缺状态码 -->
+                        <input type="hidden" name="rightCQcode" id="rightCQcode"><!-- 右眼残缺状态码 -->
+
+                        <!--暂时写死-->
+                        <input type="hidden" id="zy_xxzlpf" name="zy_xxzlpf" />
+                        <!--左眼虹膜照片信息质量评分。3位数值型字符串。必填  新添-->
+                        <input type="hidden" id="yy_xxzlpf" name="yy_xxzlpf" />
+                        <!--右眼虹膜照片信息质量评分。3位数值型字符串。必填  新添-->
+                        <div class="layui-form-item layui-layout-admin">
+                            <div class="layui-input-block">
+                                <div class="layui-footer" style="left: 0;z-index: 4;padding: 0px;height: 64px;">
+                                    <div class="tijiao">
+                                        <button type="button" id="sumbitForm" class="layui-btn" lay-submit=""
+                                            lay-filter="component-form-demo1"
+                                            style="width: 140px; height: 40px;background-color: #2F4056;margin-top: 13px;">提交</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary" id="reset"
+                                            style="width: 140px; height: 40px;margin-top: 13px;">重置</button>
+                                        <input type="hidden" id="formData">
+                                    </div>
+                                    <!-- 为了兼容在ie8下面提交中字体模糊的问题-->
+                                    <div class="tijiaozhong" style="display: none">
+                                        <button type="button" class="layui-btn"
+                                            style="width: 140px; height: 40px;background-color: #2F4056;">提交中...</button>
+                                        <button type="reset" class="layui-btn layui-btn-primary"
+                                            style="width: 140px; height: 40px;" onclick="cleanFrom();">重置</button>
+                                        <input type="hidden" id="formData1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="submitData">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cardDiv" style="display:none;background-color: red">
+        <div style="height: 200px;text-align: center;">
+            <img src="" style="width: 262px;padding-top:20px">
+        </div>
+    </div>
+    <object id="objActiveX" classid="clsid:A66F5373-0A8A-4C42-814B-38A87B331D40" width=0 height=0"></object>
+
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/gather/gather.js"></script>
+</body>
+
+</html>

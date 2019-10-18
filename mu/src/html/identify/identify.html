@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>虹膜识别</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="/layui/layui/css/layui.css">
+    <link  rel="stylesheet"  href="/css/tools.css">
+    <link  rel="stylesheet"  href="/css/identify/identify.css">
+    <style>
+    body{
+        overflow-x: auto;
+        background:#FFFFFF;
+    }
+    .layui-input {
+      border: 1px solid #D5D5D5;
+    }
+    .labelItemSpan{
+        color: #797979 !important;
+        float: right;
+    }
+    .fontLable{
+        font-weight:normal !important;
+        font-size: 14px !important;
+    }
+    .layui-form-label  i{
+        color: red !important;
+        margin-right: 5px;
+    }
+    #leftContent label{
+        width: 70px !important;
+    }
+     #leftContent  .marginLeft{
+        margin-left: 90px !important;
+    }
+     label{
+        width: 110px !important;
+        padding:10px  0px 10px 0px !important; 
+    }
+    .marginLeft{
+        margin-left: 130px  !important;
+    }
+    .layui-layer-btn-{
+        border:1px solid #EEEEEE;
+    }
+    .shows {
+            display: block;
+    }
+
+    .hiddens {
+        display: none;
+    }
+    .layui-layer-btn-{
+        padding: 10px !important;
+    }    
+    .layui-layer-btn a{
+        margin: 0px !important;
+    }
+    #carderight  input{
+        font-weight:normal !important;
+        font-size: 14px !important; 
+    }
+    .inputSpan{
+        font-size: 14px !important;
+    }
+    </style>
+</head>
+<body> 
+    <input type="hidden"  id="querytype"/>
+    <input type="hidden" class="len"/>
+<div class="layui-fluid" style="min-width: 1350px">
+    <div class="layui-row layui-col-space15"  style="margin:0px">
+    <div class="layui-card"  id="layui-card">
+    <form class="layui-form" action="" lay-filter="identify-form-filter">
+        <!-- 识别返回到的采集信息部分 -->
+        <div class="layui-card layui-col-xs4"  id="leftContent" style="min-width: 445px;">
+            <div class="layui-card-header  headerBoder">采集信息</div>
+            <div class="layui-card-body">
+
+                <div class="layui-row">
+
+                    <!-- 显示图片部分 -->
+                    <div class="layui-form-item  firstItem" style="margin-top:10px;width: 400px;margin-left: -7px;margin-bottom:30px">
+                        <div class="layui-input-block "  style="margin-left:0px;width:101.5%;float:left;">
+                                <div style="width:48%; height: 152px; float: left;margin-right: 10px;">
+                                    <img id="sbjg-eye-r" src="/img/eye.png" style="width:100%; height: 100%;">
+                                    <span style="width: 100%;text-align:center;height: 20px;"  class="yypf">右眼</span>                                 
+                                </div>
+                                <div style="width:48%; height: 152px; float: left;">
+                                    <img id="sbjg-eye-l" src="/img/eye.png" style="width:100%; height: 100%;">
+                                    <span style="width: 100%;text-align:center;height: 20px;"  class="zypf">左眼</span>
+                                </div>
+                        </div>
+                    </div>
+
+                    <!-- 识别返回到的采集信息部分 -->
+                    <div class="layui-form-item"  style="margin-bottom:10px;">
+                        <div class="layui-input-block  kssb_block" style="margin-left: 0px;">
+                            <button type="button" class="layui-btn" id="identify-iris-ui" style="float: left;width:150px;background-color: #2F4056;">
+                                <img id="" src="/img/iris-btn.png" width="30px;">&nbsp;&nbsp;开始查验
+                            </button>
+                            <div id="sbjg-lsjl" style="padding:0px;float: left">
+                                <span id="sbjg-sbhs" style="color: #797979;width: 120px;float: left;line-height:40px;margin-left:10px;"></span>
+                                <span style="float:right;"><a href="#" id="identify-record-ui" style="font-weight: bold;font-size: 14px;text-decoration:underline;height:38px;line-height:38px;color: #0079FE;">历史记录</a></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item"  id="left_info"  style="width: 90%">
+                        <div   class="left_info_item">
+                                <div class="layui-form-item" style="margin-top:0px;">
+                                        <label class="layui-form-label label_width  first_label_width  cjbhBlock">采集编号：</label>
+                                        <div class="layui-input-block marginLeft" id="sbjg-cjbh" style=" height: 36px; line-height: 36px;   border-bottom: 1px #d2d2d2 solid;"></div>
+                                    </div>
+                
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label label_width   first_label_width  cjsjBlock">采集时间：</label>
+                                        <div class="layui-input-block marginLeft" id="sbjg-cjsj" style=" height: 36px; line-height: 36px;   border-bottom: 1px #d2d2d2 solid;"></div>
+                                    </div>
+                
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label label_width  first_label_width">采集人：</label>
+                                        <div class="layui-input-block  marginLeft longText" id="sbjg-cjr" style="height: 36px; line-height: 36px;    border-bottom: 1px #d2d2d2 solid;"></div>
+                                    </div>
+                
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label label_width  first_label_width">采集点：</label>
+                                        <div class="layui-input-block marginLeft  longText" id="sbjg-cjd" style=" height: 36px; line-height: 36px;    border-bottom: 1px #d2d2d2 solid;"></div>
+                                    </div>
+                
+                                    <div class="layui-form-item" >
+                                        <label class="layui-form-label label_width  first_label_width">采集备注：</label>
+                                        <div class="layui-input-block longText marginLeft" style="height: 36px; line-height: 36px; border-bottom: 1px #d2d2d2 solid;" id="sbjg-cjbz"></div>
+                                    </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div class="layui-card layui-col-xs4 towlayui-col-xs4"  id="infoCenter"  style="min-width: 350px;" >
+            <div class="layui-card-header headerBoder people_info">
+                    <span id="people_info_title">人员信息</span>
+                    <div class="info">
+                        <span class="people_info_RS"></span>
+                        <span  class="people_info_prve  layui-icon layui-icon-prev"></span>
+                        <div  class="people_info_wiod"> 
+                            <div class="people_info_list">
+                                    <!-- <span class="people_info_item">小白</span>  -->
+                            </div>     
+                        </div> 
+                        <span  class="people_info_next   layui-icon layui-icon-next"></span> 
+                    </div>
+            </div>
+            <div class="layui-card-body"  id="centerHtml" style="padding: 15px 30px 30px 30px">
+                 <div class="layui-form-item"  style="width:330px;margin-left: 125px">
+                    <div class="layui-input-block "   style="height:190px;margin-left:0px">
+                        <div   class="imgParpent  centerimgParpent" style="float: left;height:190px;">
+                            <img id="sbjg-card-r" src="/img/card-img.png" style="width: 152px; height: 190px;">
+                        </div>
+                        <!-- <span  class="yzwzbz bzbz"><i class="layui-icon layui-icon-ok"></i>比中</span>
+                        <span  class="yzwzbz wbzbz"><i class="layui-icon layui-icon-close"></i>未比中</span> -->
+                        <!-- <div class="people_info_img_right">
+                            <span id="sbjg-zjbz">有证/无证</span>
+                           <span>专题库：</span>
+                            <span> 肇事肇祸精神病人，涉毒人员，涉恐人员，涉黄人员，涉赌人员，电信诈骗人员，XXXXX人... </span>
+                         </div> -->
+                    </div>
+                </div>
+                <div id="show-form-1" style="margin-top:20px;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width">姓名：</label>
+                        <div class="layui-input-block longText marginLeft" id="sbjg-bcjrxm" style=" height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">证件类型：</label>
+                        <div class="layui-input-block marginLeft"  id="sbjg-zjlx" style="height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                        <div style="display: none;" id="zjlxdm"></div>
+                    </div>
+
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">证件号：</label>
+                        <div class="layui-input-block longText marginLeft"  id="sbjg-zjhm" style=" height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;"></div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">性别：</label>
+                        <div class="layui-input-block marginLeft " id="sbjg-xb" style=" height: 36px; line-height: 36px; border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">出生日期：</label>
+                        <div class="layui-input-block marginLeft" id="sbjg-csrq" style=" height: 36px; line-height: 36px;   border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">国籍：</label>
+                        <div class="layui-input-block marginLeft" id="sbjg-gj" style="height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">民族：</label>
+                        <div class="layui-input-block marginLeft" id="sbjg-mz" style="height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">户籍地址：</label>
+                        <div class="layui-input-block longText marginLeft"  id="sbjg-hjdz" style=" height: 36px; line-height: 36px; border-bottom: 1px #d2d2d2 solid;">
+
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">证件签发机构：</label>
+                        <div class="layui-input-block longText marginLeft" id="sbjg-zjqfjg" style=" height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">证件有效期：</label>
+                        <div class="layui-input-block marginLeft" id="sbjg-zjyxq" style=" height: 36px; line-height: 36px;   border-bottom: 1px #d2d2d2 solid;">
+
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width"> 手机号码：</label>
+                        <div class="layui-input-block marginLeft" id="sbjg-sjhm" style=" height: 36px; line-height: 36px;   border-bottom: 1px #d2d2d2 solid;">
+
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width"> 其他联系电话：</label>
+                        <div class="layui-input-block marginLeft" id ="sbjg-qtlxdh" style="height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">人员分类：</label>
+                        <div class="layui-input-block   longText  marginLeft" id="sbjg-ryfl" style="height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" >
+                        <label class="layui-form-label label_width">人员标签：</label>
+                        <div class="layui-input-block   longText  marginLeft" id="rybq" style="height: 36px; line-height: 36px;  border-bottom: 1px #d2d2d2 solid;">
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="layui-card layui-col-xs4 "   id="carderight"   style="min-width: 420px;" >
+            <div class="layui-card-header headerBoder">人证合一核验<div style="float: right;"><span style="color: red;margin-right:4px"> * </span>为必填项</div>
+            <div class="layui-card-body" style="padding: 15px 30px 15px 0px;">
+                <!-- 显示图片部分 -->
+                <div class="layui-form-item rightItem">
+                    <div class="layui-input-block  imgParpent" style="width: 350px;margin-left: 127px">
+                        <div class="layui-inline "  id="rightCardImg"  style="width:152px;float:left">
+                            <img id="sbjg-card-l" src="/img/card-img.png" style="width: 152px; height: 190px;">
+                        </div>
+                        <div class="layui-inline"  id="rightBtnParent" style="width: 150px;float: left;">
+                            <button type="button" class="layui-btn layui-btn-disabled" id="dqedsfz" style="margin-left:10px; width: 130px;margin-top: 100px" disabled><img src="/img/card-btn2.png" style="float:left;margin-top:5px">读二代证</button>
+                            <button type="button" class="layui-btn layui-btn-disabled" id="sgrl" style="margin-left:10px; width: 130px;margin-top: 15px;" disabled><img src="/img/card-btn3.png" style="float:left;margin-top:10px;">手工录入</button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="gather-tag" value="1" lay-verify="require|isGather" autocomplete="off" class="layui-input layui-btn-disabled" maxlength="50"  disabled>
+                <!-- 身份证或手工录入 -->
+                <div id="show-form-2">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan  fontLable">姓名：</span></label>
+                        <div class="layui-input-block marginLeft  addBorder">
+                            <input type="text" id="xm" name="xm" l  lay-verify="required"  autocomplete="off" class="layui-input layui-btn-disabled  " maxlength="50"  disabled>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan  fontLable">证件类型：</span></label>
+                        <div class="layui-input-block marginLeft addBorder  selectlayui-input-block">
+                            <span class="inputSpan">请选择</span>
+                            <select name="zjlx" lay-filter="zjlx"  lay-verify="required"  id="zjlx" class="layui-btn-disabled" disabled autocomplete="off" >
+                                <option  value="" selected>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan  fontLable">证件号：</span></label>
+                        <div class="layui-input-block marginLeft addBorder">
+                            <input type="text" name="zjhm"  id="zjhm"  lay-verify="required"   autocomplete="off" class="layui-input layui-btn-disabled " maxlength="18" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan fontLable">性别：</span></label>
+                        <div class="layui-input-block marginLeft addBorder selectlayui-input-block">
+                            <span class="inputSpan">请选择</span>
+                            <select name="xb" lay-filter="xb"  lay-verify="required"  id="xb" class="layui-btn-disabled  " disabled>
+                                <option  value="" selected>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan  fontLable">出生日期：</span></label>
+                        <div class="layui-input-block marginLeft addBorder">
+                            <span class="inputSpan  chushengriqi">年-月-日</span>
+                            <input type="text" name="csrq" id="csrq" lay-verify="required"   disabled   placeholder="年-月-日" autocomplete="off" class="layui-input layui-btn-disabled " >
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan fontLable">国籍：</span></label>
+                        <div class="layui-input-block marginLeft addBorder selectlayui-input-block">
+                            <span class="inputSpan">请选择</span>
+                            <select name="gj" lay-filter="gj"  lay-verify="required"  id="gj" class="layui-btn-disabled" disabled>
+                                <option value="" selected>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width"><i> * </i><span  class="labelItemSpan fontLable">民族：</span></label>
+                        <div class="layui-input-block marginLeft addBorder selectlayui-input-block">
+                            <span class="inputSpan">请选择</span>
+                            <select name="mz" lay-filter="mz"  id="mz"   lay-verify="required" class="layui-form-select layui-btn-disabled" disabled>
+                                <option value="" selected>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width  fontLable"> 户籍地址：</label>
+                        <div class="layui-input-block marginLeft">
+                            <input type="text" name="hjdz" id="hjdz" autocomplete="off" class="layui-input layui-btn-disabled" maxlength="100" disabled>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width  fontLable"> 证件签发机构：</label>
+                        <div class="layui-input-block marginLeft">
+                            <input type="text" name="qfjg" id="qfjg" autocomplete="off" class="layui-input layui-btn-disabled" maxlength="100" disabled>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label label_width  fontLable"> 证件有效期：</label>
+                        <div class="layui-input-block marginLeft">
+                            <span class="inputSpan youxiaqi">年-月-日~年-月-日</span>
+                            <input type="text" name="zjyxqdate" id="zjyxqdate"
+                            lay-verify="zjyxqdate" placeholder="年-月-日&nbsp;&nbsp;~&nbsp;&nbsp;年-月-日"
+                            autocomplete="off" class="layui-input shows  layui-btn-disabled" disabled >
+                        <input type="text" name="zjyxq" id="zjyxq" lay-verify="zjyxq"
+                            placeholder="年-月-日&nbsp;&nbsp;~&nbsp;&nbsp;年-月-日" autocomplete="off"
+                            class="layui-input  hiddens " disabled style="color: #000;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <!-- 采集虹膜数据传递 -->
+        <input type="hidden" id="sfcjcgbz" name="sfcjcgbz"/><!--是否采集成功标志  1成功  0不成功-->
+        <input type="hidden" id="qzcjbz" name="qzcjbz"/><!-- 1-强制，0-正常。必填。-->
+        <input type="hidden" id="dsycjbz" name="dsycjbz"/> <!--3; // 双眼采集 2; // 左眼采集 1; // 右眼采集。 -->
+        <input type="hidden" id="cjtphs" name="cjtphs"/><!-- 采集图片耗时，单位秒，保留到毫秒，例如 2.032秒。 -->
+        <input type="hidden" id="sbxh" name="sbxh"/> <!--设备型号 -->
+        <input type="hidden" id="sbbh" name="sbbh"/> <!--设备编号 -->
+        <!-- 新添 -->
+        <input type="hidden" id="sbcsdm" name="sbcsdm"><!--设备厂商代码-->
+        <input type="hidden" id="zy_xxzlpf" name="zy_xxzlpf"/> <!--左眼虹膜照片信息质量评分。3位数值型字符串。必填  新添-->
+        <input type="hidden" id="yy_xxzlpf" name="yy_xxzlpf"/> <!--右眼虹膜照片信息质量评分。3位数值型字符串。必填  新添-->
+        <input type="hidden" name="bjbz"  id="bjbz"/> <!--性别-->
+        <input type="hidden" name="bsbr_xb"/> <!--性别-->
+        <input type="hidden" name="bsbr_mz"/> <!--民族-->
+        <input type="hidden" name="bsbr_gj"/> <!--国籍-->
+        <input type="hidden" name="bsbr_ryfl"/> <!--人员分类-->
+        <input type="hidden" name="bsbr_zjlx"><!-- 证件类型 -->
+        <input type="hidden" name="updVersion"><!-- 设备最新版本号 -->
+        <input type="hidden" name="identifyId" id="identifyId"> <!--  识别完成后的识别记录ID-->
+        <div id="ztkbj" style="display:none"></div>
+        <!--暂时写死-->
+        <input type="hidden" id="imageJson" name="imageJson"/>
+        <input type="hidden" id="templageJson" name="templageJson"/>
+        <input type="hidden" id="lrbz" name="lrbz"/> <!-- 录入标志 1-读证录入 2-手工录入 3-警综录入。 -->
+        <input type="hidden" id="zjbz" name="zjbz" value="1"/> <!-- 证件标志：0-无证  1-有证。 -->
+        <input type="hidden" id="zjzp" name="zjzp"/> <!-- 图片BASE64 -->
+        <input type="hidden" id="zybmp" name="zybmp"/> 
+        <input type="hidden" id="yybmp" name="yybmp"/> <!--右眼bmp-->
+        <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+                    <div class="layui-footer" style="left: 0;z-index: 4;padding: 0px;height: 64px;">
+                            <div  class="tijiao">
+                                <button type="button" id="sumbitForm"    class="layui-btn" lay-submit="" lay-filter="component-form-demo1" style="width: 140px; height: 40px;background-color: #2F4056;margin-top: 13px;">证件核验</button>
+                                <button type="reset" class="layui-btn layui-btn-primary" style="width: 140px; height: 40px;margin-top: 13px;"   id="reset" >重置</button>
+                                <input type="hidden" id="formData">
+                            </div>
+                            <!-- 为了兼容在ie8下面提交中字体模糊的问题--> 
+                            <div  class="tijiaozhong"   style="display: none">
+                                <button type="button"  class="layui-btn"  style="width: 140px; height: 40px;background-color: #2F4056;">提交中...</button>
+                                <button type="reset" class="layui-btn layui-btn-primary" style="width: 140px; height: 40px;">重置</button>
+                                <input type="hidden" id="formData">
+                            </div>
+                        </div>
+                </div> 
+            </div>
+    </form>
+    </div>
+    </div>
+</div>
+<!-- 身份证去掉佛饼放在最下面   不然影响上面高度-->
+<object id="objActiveX" classid="clsid:A66F5373-0A8A-4C42-814B-38A87B331D40" width=0 height=0"></object>
+<script src="/script/jquery-1.8.3.min.js"></script>
+ <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+<script src="/layui/layui/layui.js"></script>
+<script src="/script/layui_config.js"></script>
+<script src="/script/identify/identify.js"></script>
+</body>
+</html>

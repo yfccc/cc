@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/layui/layui/css/layui.css">
+    <link rel="stylesheet" href="/css/tools.css">
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyStatus(param1)" type="text/javascript">
+        OnNotifyStatus(param1); // 获取设备状态码
+    </script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyCaptureTime(param1)" type="text/javascript">
+        /*    OnNotifyCaptureTime(param1); //也可直接写操作代码*/
+    </script>
+    <script language="javascript1.1" for="Biometrics"
+        event="OnNotifyQualityScore(PercentVisibleL, QualityScoreL, PercentVisibleR, QualityScoreR)"
+        type="text/javascript">
+            OnNotifyQualityScore(PercentVisibleL, QualityScoreL, PercentVisibleR, QualityScoreR); //也可直接写操作代码
+        </script>
+
+    <script language="javascript1.1" for="Biometrics"
+        event="OnNotifyImage(nWorkMode, nImageNum, ulTimeStamp, bLeftEye, bRightEye, strLetImage, strRightImage,  strLeftImageJPG, strRightImageJPG)"
+        type="text/javascript">
+            OnNotifyImage(nWorkMode, nImageNum, ulTimeStamp, bLeftEye, bRightEye, strLetImage, strRightImage,
+                strLeftImageJPG, strRightImageJPG);
+        </script>
+    <script language="javascript1.1" for="Biometrics" event="OnNotifyCaptureTime(param1)" type="text/javascript">
+        OnNotifyCaptureTime(param1); //也可直接写操作代码
+    </script>
+    <style>
+        .b {
+            width: 100%
+        }
+
+        .layui-form-label {
+            width: 110px;
+        }
+
+        .layui-input {
+            border: 1px solid #D5D5D5;
+        }
+
+        .layui-form-item .layui-input-inline {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body style="overflow-x:hidden; background: #ffffff;">
+    <div class="layui-fluid">
+        <div class="layui-card" id="layui-card" style="background: #ffffff;box-shadow: none;margin-bottom:30px;">
+            <div class="layui-card-body" id="formDiv">
+                <form class="layui-form" style="width:730px;margin:auto;">
+                    <input type="text" id="deviceId" name="deviceId" style="display:none;">
+                    <input type="text" id="deviceCode" name="deviceCode" style="display:none;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>标签：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" autocomplete="off" class="layui-input b" id="bq" required
+                                lay-verify="required" name="deviceTitle"
+                                onpropertychange="if(value.length>15) value=value.substr(0,15)" maxlength="15">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>设备厂商：</label>
+                        <div class="layui-input-inline">
+                            <select lay-search="" id="sbcs" lay-filter="sbcs" name="deviceManufacturerCode"
+                                autocomplete="off" required lay-verify="required" lay-f>
+                                <option value="" selected=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>型号：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" autocomplete="off" class="layui-input" id="xh" name="deviceModeCode"
+                                required lay-verify="required"
+                                onpropertychange="if(value.length>20) value=value.substr(0,20)" maxlength="20">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>序列号(SN码)：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" autocomplete="off" class="layui-input" name="deviceSn" id="xlSN" required
+                                lay-verify="required" onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                maxlength="50">
+                        </div>
+                        <span class="layui-btn  getActiveSn"
+                            style="display: none;width:120px;float: right;">获取设备SN码</span>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">IP地址：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" lay-verify="IPV4" name="deviceIp" autocomplete="off" id="ipdz"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>类型：</label>
+                        <div class="layui-input-inline">
+                            <select name="deviceTypeid" lay-search="" autocomplete="off" required lay-verify="required">
+                                <option value="" selected=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">MAC地址：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="deviceMac" autocomplete="off" id="dzmac" class="layui-input"
+                                lay-verify="MAC">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>所属机构：</label>
+                        <div class="layui-input-inline" id="select_org" style="cursor: pointer;">
+                            <input type="text" id="jgxxJgid" name="jgxxJgid" style="display: none;">
+                            <input type="text" id="jgxxGajgjgdm" name="jgxxGajgjgdm" style="display: none;">
+                            <input type="text" autocomplete="off" id="jgxxGajgjgname" class="layui-input" required
+                                lay-verify="required" style="pointer-events: none;">
+                            <i class="layui-icon layui-icon-search"
+                                style="font-size: 20px; position: absolute;top: 1px; right: 1px; background: #fff; width: 35px; height: 35px; text-align: center; line-height: 35px;"></i>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>接入状态：</label>
+                        <div class="layui-input-inline">
+                            <select name="deviceIsConnected" id="qyzt" lay-search="" autocomplete="off" required
+                                lay-verify="required">
+                                <option value="" selected>请选择</option>
+                                <option value="1">已接入</option>
+                                <option value="2">拒绝接入</option>
+                                <option value="3">试运行</option>
+                                <option value="4">等待接入</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"><span class="xinghao"> * </span>采集场地：</label>
+                        <div class="layui-input-inline">
+                            <select name="devicePlaceCode" id="cjcd" lay-search="" autocomplete="off" required
+                                lay-verify="required">
+                                <option value="" selected>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">设备所在经度：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" lay-verify="longitude" autocomplete="off" class="layui-input" id="sbjd"
+                                name="deviceLongitude">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">设备安装纬度：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" lay-verify="latitude" autocomplete="off" class="layui-input" id="sbwd"
+                                name="deviceLatitude">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">备注：</label>
+                        <div class="layui-input-inline">
+                            <textarea placeholder="请输入备注信息" name="deviceRemork" class="layui-textarea"
+                                onpropertychange="if(value.length>50) value=value.substr(0,50)"
+                                maxlength="50"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-layout-admin">
+                        <div class="layui-input-inline">
+                            <div class="layui-footer"
+                                style="left: 0;z-index: 4;padding: 0px;height: 64px;line-height:64px; text-align: center;background: #ffffff;">
+                                <button class="layui-btn download" id="see_edit_submit_btn" lay-submit
+                                    lay-filter="see_edit_filter" style="width: 140px; height: 40px;">提交</button>
+                                <a href="./device_record.html" style="width: 140px; height: 40px;"
+                                    class="layui-btn layui-btn-primary">返回</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <object id="objActiveX" classid="clsid:A66F5373-0A8A-4C42-814B-38A87B331D40" width=0 height=0"></object>
+    <OBJECT classid="clsid:42F4A906-EDA3-4130-A507-0B90CDFF11BA" id="Biometrics" width=0 height=0"></OBJECT>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+    <!-- 兼容IE89ajax -->
+    <!--[if lt IE 10]> 
+        <script src="/script/jquery.xdomainrequest.min.js"></script>
+        <script src="/script/html5shiv/r29/html5.min.js"></script>
+        <script src="/script/json2.js"></script>
+    <![endif]-->
+    <script src="/layui/layui/layui.js"></script>
+    <script src="/script/layui_config.js"></script>
+    <script src="/script/device_manager/device_record/see_edit_BD.js"></script>
+</body>
+
+</html>

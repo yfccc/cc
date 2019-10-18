@@ -1,0 +1,135 @@
+html , body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+body{
+    margin: 0px;
+    background: #03152A;
+    background-image: url("/img/bg_login2.png");
+    background-size: 100% 100%; 
+    background-repeat:no-repeat 
+}
+.content{
+    height: 350px;
+    width: 350px;
+    /* border-radius:20px; */
+    /* background: #fff;  */
+    margin:auto;
+    margin-top: 18%;
+    background-image:url("/img/loginInput.png") 
+}
+.header{
+    height: 100px;
+    width: 100%;
+    font-size: 26px;
+    font-weight: bold;
+    color: #AFADAD;
+    text-align: center;  
+    line-height: 100px;
+    margin-bottom: 10px;
+    
+}
+.header span{
+    display: block;
+}
+form div{
+    width: 90%;
+    height: 40px;
+    border: 1px solid #DBDBDB;
+    float: left;
+    margin-left: 16px;
+}
+.towInput{
+    margin-top: 20px;
+}
+form div img{
+    float: left;
+    width: 24px;
+    height: 28px;
+    margin-top:5px;
+    margin-left: 10px;
+}
+form div .checkbox{
+float: left;
+height: 15px;
+width: 15px;
+margin-top: 10px;
+margin-right: 0px
+}
+.ts{
+    border: none !important;
+    margin-top: 20px;
+}
+form div span{
+    line-height: 32px;
+    color: #AFADAD;
+    font-size:12px; 
+}
+form input{
+    display: block;
+    width: 80%;
+    border: none;
+    border: 1px solid #DBDBDB;
+    height: 90%;
+    /* margin: auto;  */
+    float: right;
+    border: 0px;
+    outline: none; 
+    list-style: none;
+    margin-right:10px;
+    /* background:red; */
+    height: 25px;
+    margin-top: 8px;
+}
+form a{
+list-style: none;
+text-decoration: none;
+display: block;
+width: 90%;
+height: 50px;
+text-align: center;
+line-height: 55px;
+color: #fff;
+background: #0079FE;
+margin: auto;
+float: left;
+margin-left: 16px;
+}
+.danger{
+    height: 40px;
+    width: 70%;
+    background: rgba(0, 0, 0, 0.5);
+    text-align:center;
+    line-height: 40px;
+    color: #DBDBDB;
+    /* background-image:url("/img/danger2.png") ; */
+    background-size: 30px 30px;
+    background-repeat:no-repeat;
+    background-position:5px 5px;  
+    margin: auto;
+    margin-top:10px;
+    border-radius: 5px; 
+}
+.fotter{
+    position: absolute;
+    bottom: 0px;
+    font-size:14px;
+    color: #fff;
+    text-align: center; 
+    height: 150px;
+    line-height: 150px;
+    width: 100%
+}
+.dl{
+    margin-top: 40px;
+}
+input:focus{ outline: none;}
+.inputP{
+    position: relative;
+}
+.inputSpan{
+    position: absolute;
+    top: 6px;
+    left: 50px;
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="/script/jquery-1.8.3.min.js"></script>
+
+     <!--[if lt IE 10]> 
+    <script src="/script/jquery.xdomainrequest.min.js"></script>
+    <script src="/script/html5shiv/r29/html5.min.js"></script>
+    <script src="/script/json2.js"></script>
+  <![endif]-->
+    <script>
+            // var data = {
+            //             "platform": "1007",
+            //             "appversion": "1.0.3",
+            //             "apiversion": "1.0.2",
+            //             "mac": "12345678",
+            //             "ip": "xxx.xxx.xx.xx",
+            //             "companyCode ": "1001",
+            //             "token": "666666"
+            //         }
+            //     var datas = JSON.stringify(data);
+            //     jQuery.support.cors = true;
+            //  $.ajax({
+            //         url:"http://10.2.1.188:9080/collection/gather/getCodeList",
+            //         type: "post",
+            //         data: datas,
+            //         asnyc: false,
+            //         dataType: "json",
+            //         cache: false,
+            //         contentType: "application/json",
+            //         success: function (data) {
+            //             alert(data.status)
+            //         },
+            //         error: function (xmlhttpRequest, textStatus) {
+            //             var status = JSON.stringify(xmlhttpRequest.readyState);
+            //             alert(status)
+            //         }
+            //     })
+
+                var desPassworldData = {
+                "apiVersion": "1.0.2",
+                "appVersion": "1.0.3",
+                "data": {
+                    "param": "appril1234"
+                },
+                "platform": "1007"
+            }
+            var yy= JSON.stringify(desPassworldData)
+            alert("jinali")
+            jQuery.support.cors = true;
+            $.ajax({ //账号加密请求接口
+                url:"http://10.2.1.35:9080/common/desEncrypt",
+                type: "post",
+                data: yy,
+                cache: false,
+                contentType: "application/json",
+                success: function (res) {
+                    alert("加密密码借口成功")
+                },
+                error: function (xmlhttpRequest, textStatus) {
+                    var status = JSON.stringify(xmlhttpRequest.readyState);
+                    alert(status)
+                }
+            })
+    </script>
+</body>
+
+</html>

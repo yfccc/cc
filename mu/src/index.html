@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>虹膜身份核查系统</title>
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="stylesheet" href="/css/tools.css">
+  <link rel="stylesheet" href="/layui/layui/css/layui.css">
+  <style>
+    .hide {
+      display: none !important;
+    }
+
+    .show {
+      display: block
+    }
+
+    .layui-layer-btn- {
+      border: 1px solid #E6E6E6;
+      padding: 10px !important;
+      margin: 0px !important;
+    }
+
+    .user_name {
+      width: 70px;
+      height: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 50px;
+      text-align: left;
+
+    }
+  </style>
+</head>
+
+<body style="overflow-x:hidden;">
+  <a href="" class="SQurl" style="display:none"> 授权文件下载</a>
+  <div class="header">
+    <div class="log  header-item "><img src="/img/gh.png"><span></span></div>
+    <div class="header-item  user  hovers" title="">
+      <i class="layui-icon layui-icon-user"></i>
+      <span class="user_name"></span>
+      <div class="user-hover hover">
+        <span class="user-edit">修改密码</span>
+        <span class="user-info">用户信息</span>
+        <span class="out">退出登录</span>
+      </div>
+    </div>
+    <div class="header-item  dowelode  hovers">
+      <i class="layui-icon  layui-icon-download-circle" title="下载"></i>
+      <span title="下载">下载</span>
+      <i class="layui-icon layui-icon-down" title="下载"></i>
+      <div class="dowelode-hover hover">
+        <a id="irisdownload" href="javascript:"
+          style="font-size: 13px;font-weight: normal;padding-bottom: -2px"><span>虹膜识别仪驱动</span></a>
+        <a id="iddownload" href="javascript:"
+          style="font-size: 13px;font-weight: normal;padding-bottom: -2px"><span>身份证读卡器驱动</span></a>
+        <a href="" class="sq">授权文件下载</a>
+        <a class="moreDrive" href="javascript:" thisHref="./html/system/drive/drive.html">更多驱动</a>
+      </div>
+    </div>
+    <div class="header-item  yj  hovers" title="意见反馈" id="feedback">
+      <i class="layui-icon layui-icon-survey"></i>
+      意见反馈
+    </div>
+    <div class="header-item  yj  hovers" title="用户帮助" id="user_help" style="display: none;">
+      <i class="layui-icon layui-icon-read"></i>
+      用户帮助
+    </div>
+    <div class="header-item first-home  hovers" id="first-home" title="首页">
+      <i class="layui-icon layui-icon-home"></i>首页</div>
+    <!-- <span id="sub-title"><i></i><span  id="sub-title-span">首页</span></span> -->
+
+    <!-- <span class="layui-icon layui-icon-refresh-3 reload"  title="刷新"></span> -->
+  </div>
+
+
+  <div class="left-menu-parent">
+    <!-- 左侧导航 -->
+
+    <ul class="layui-nav layui-nav-tree"   lay-shrink="all"  lay-filter="left-menu" id="left-menu">
+      <!-- <li class="layui-nav-item">
+                <a href="javascript:"><i class="layui-icon  aItemIcon layui-icon-camera"></i> 虹膜识别</a>
+                <dl class="layui-nav-child">
+                  <dd><a href="#"  thisHref="./html/gather/gather.html">虹膜采集</a></dd>
+                  <dd><a href="#"  thisHref="./html/identify/identify.html">虹膜识别</a></dd>
+                </dl>
+              </li>
+              <li class="layui-nav-item ">
+                  <a href="javascript:"><i class="layui-icon  aItemIcon layui-icon-search"></i>数据查询</a>
+                  <dl class="layui-nav-child">
+                    <dd><a href="javascript:" thisHref="./html/gather_identify_record/gather_record_list/gather_record_list.html">采集记录</a></dd>
+                    <dd><a href="javascript:" thisHref="./html/gather_identify_record/gather_record_PL_search/gather_record_PL_search.html">采集记录批量查询</a></dd>
+                    <dd><a href="javascript:" thisHref="./html/gather_identify_record/identify_record_list/identify_record_list.html">识别记录</a></dd>
+                    <dd><a href="javascript:" thisHref="./html/gather_identify_record/bjxxcx/bjxxcx.html" >报警记录</a></dd>
+                  </dl>
+                </li>
+                <li class="layui-nav-item ">
+                    <a href="javascript:"><i class="layui-icon  aItemIcon layui-icon-table"></i>统计分析</a>
+                    <dl class="layui-nav-child">
+                      <dd><a href="javascript:" thisHref="./html/gather_identify_statistical/gather_cjl/gather_cjl.html" >采集量统计</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/gather_identify_statistical/identify_sbl/identify_sbl.html">识别量统计</a></dd>
+                    </dl>
+                  </li>
+                <li class="layui-nav-item ">
+                    <a href="javascript:"><i class="layui-icon  aItemIcon layui-icon-list"></i>基础数据管理</a>
+                    <dl class="layui-nav-child">
+                      <dd><a href="javascript:" thisHref="./html/information_manager/person/person.html" >人员信息管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/information_manager/project_library/project_library.html">专题库管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/information_manager/person_label_record/person_label_record.html">人员标签管理</a></dd>
+                      <dd><a href="javascript:;"   thisHref="./html/information_manager/person_historical_record/person_historical_record.html">人员信息管理历史记录</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/information_manager/offline_import/offline_import.html">离线数据导入</a></dd>
+                    </dl>
+                  </li>
+                    <li class="layui-nav-item ">
+                      <a href="javascript:;"><i class="layui-icon  aItemIcon layui-icon-template"></i>设备管理</a>
+                      <dl class="layui-nav-child">
+                        <dd><a href="javascript:" thisHref="./html/device_manager/device_record/device_record.html">设备管理</a></dd>
+                        <dd><a href="javascript:" thisHref="./html/device_manager/drive/drive.html">驱动管理</a></dd>
+                      </dl>
+                    </li>
+                <li class="layui-nav-item ">
+                    <a href="javascript:"><i class="layui-icon  aItemIcon layui-icon-util"></i>系统管理</a>
+                    <dl class="layui-nav-child">
+                      <dd><a href="javascript:" thisHref="./html/system/institutions/institutions.html" >组织机构管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/system/menu/menu.html" >菜单管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/system/user/user.html">用户管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/system/role/role.html">角色管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/system/dictionary/dictionary.html">数据字典管理</a></dd>
+                      <dd><a href="javascript:" thisHref="./html/system/upload_dictionary_rules/upload_dictionary_rules.html">系统设置</a></dd>
+                    </dl>
+                  </li>
+                  <li class="layui-nav-item ">
+                      <a href="javascript:"><i class="layui-icon  aItemIcon layui-icon-chat"></i>意见公告管理</a>
+                      <dl class="layui-nav-child">
+                        <dd><a href="javascript:" thisHref="./html/opinion/opinion/opinion.html">意见管理</a></dd>
+                        <dd><a href="javascript:" thisHref="./html/opinion/sign/sign.html">公告管理</a></dd>
+                      </dl>
+                    </li>
+                    <li class="layui-nav-item ">
+                        <a href="javascript:"><i class="layui-icon aItemIcon  layui-icon-chart-screen"></i>系统监控</a>
+                        <dl class="layui-nav-child">
+                          <dd><a href="javascript:" thisHref="./html/monitoring/monitoring/log.html">日志管理</a></dd>
+                        </dl>
+                      </li> -->
+    </ul>
+  </div>
+
+
+  <div class="right-content">
+    <div class="section">
+      <!-- <iframe  src="./home.html" height="88%"      width="100%" frameboder="no" ></iframe> -->
+    </div>
+  </div>
+  <script src="/script/jquery-1.8.3.min.js"></script>
+  <!-- 兼容IE89ajax -->
+  <!--[if lt IE 10]> 
+    <script src="/script/jquery.xdomainrequest.min.js"></script>
+    <script src="/script/html5shiv/r29/html5.min.js"></script>
+    <script src="/script/json2.js"></script>
+  <![endif]-->
+  <script src="/layui/layui/layui.js"></script>
+  <script src="/script/layui_config.js"></script>
+  <script src="/script/index.js"></script>
+  <script>
+    var windowWidth = parseInt($(window).width()) - 201 + "px"; //左侧边栏固定宽度  动态算出右侧宽度
+    var windowHeight = parseInt($(window).height()) -  54+ "px" ;
+    $(".right-content").width(windowWidth)
+    $(".right-content").height(windowHeight)
+    $(window).resize(function () {
+      var windowWidth = parseInt($(window).width()) - 201 + "px";
+      var windowHeight = parseInt($(window).height()) - 54 + "px" 
+      setTimeout(function () {
+        $(".right-content").width(windowWidth)
+        $(".right-content").height(windowHeight)
+      }, 7)
+    })
+    //权限划分
+    var ModelList = JSON.parse(localStorage.getItem("models"));
+    var userNames = localStorage.getItem("userRealname")
+    var token = localStorage.getItem("token")
+    //   没有登陆问题
+    if (token == "" || token == null) {
+      window.location.href = "/login.html";
+    }
+    layui.use(["element", "urlrelated", "extension"], function () {
+      var el = layui.element;
+      var extension = layui.extension;
+      var urlrelated = layui.urlrelated;
+      $(".log").find("span").text(urlrelated.title)
+      var ifr = document.createElement('iframe');
+      ifr.setAttribute('frameBorder', 0);
+      $(ifr).attr("src", "./home.html");
+      $(ifr).addClass("contentss");
+      $(".section").append(ifr);
+      $(".user_name").text(userNames)
+      //进来的时候请求一次
+      var data = {
+        "platform": "1007",
+        "appversion": "1.0.3",
+        "apiversion": "1.0.2",
+        "mac": "12345678",
+        "ip": "xxx.xxx.xx.xx",
+        "companyCode ": "1001",
+        "token": localStorage.getItem("token"),
+        "userId": localStorage.getItem("userId"), //登录用户信息_用户ID
+        "data": {}
+      };
+      var kjjArr = [];
+      // 因为数据是前点拿来循环的  所以一进来可能会闪一下
+      $("dd").addClass("hide")
+      $(".layui-nav-item").addClass("hide")
+      $.ajax({
+        url: urlrelated.indexModelList,
+        type: "post",
+        dataType: "json",
+        timeout: 120000,
+        contentType: "application/json",
+        data: JSON.stringify(data),
+        success: function (data) {
+          var mdlos = data.data;
+          if (data.status == 200) {
+            var leftHtml = "";
+            // 动态插入左侧结构
+            if (mdlos.length != 0) {
+              $(mdlos).each(function (i, item) { //遍历登录时的模块和首页接口请求到的模块 
+                $(ModelList).each(function (ii, itemm) {
+                  if (item.modelId == itemm.modelId) {
+                    var itemmodelIcon = item.modelIcon ? item.modelIcon :
+                      "/img/icons/ICON/compass.png";
+                    leftHtml += '<li class="layui-nav-item"  modelId=' + item.modelId + '>'
+                    leftHtml += '<a href="#"><img  src=' + itemmodelIcon +
+                      ' style="height:20px;width:20px;float:left;margin:12px 0px 0px 0px"/>' +
+                      item.modelName + '</a>'
+                    if (item.list != null && item.list != "" && item.list != undefined) {
+                    leftHtml += '<dl class="layui-nav-child">'
+                      $.each(item.list, function (ii, itemmm) {
+                        $(ModelList).each(function (iiii, itemmmm) {
+                          if (itemmmm.modelId == itemmm.modelId) {
+                            if (itemmmm.queryType == 4) {
+                              leftHtml += '<dd><a href="#"  modelId=' +
+                                itemmmm.modelId + '  querytype=' + itemmmm.queryType + "-" +
+                                itemmmm.notifiedBody + '  class="letMenuA" thisHref=' +
+                                itemmmm.modelUrl + '>' + itemmmm.modelName + '</a></dd>'
+                            } else {
+                              leftHtml += '<dd><a href="#"  modelId=' +
+                                itemmmm.modelId + '  querytype=' + itemmmm.queryType +
+                                '  class="letMenuA"  thisHref=' + itemmmm.modelUrl + '>' +
+                                itemmmm.modelName + '</a></dd>'
+                            }
+                          }
+                        })
+                      })
+                    } else {
+                      return
+                    }
+                    leftHtml += '</dl>'
+                    leftHtml += '</li>'
+                  }
+                })
+              })
+              $(".layui-nav-tree").html(leftHtml)
+              el.init()
+            } else {
+              // 没有添加模块情况触发
+              top.layer.open({
+                type: 0,
+                title: "<div style='font-weight:bold;color:red'>提示</div>",
+                btn: ["确定"],
+                resize: false,
+                area: ["450px", "210px"],
+                content: "<div  style='font-size:14px;color:black;text-indent:10px;line-height:70px'><span class='layui-icon layui-icon-face-cry' style='color:orangered;font-size:30px;margin-left:5px'></span><span style='margin-left:5px;line-height:66px'>暂时还没有添加模块</span></div>",
+                btn1: function (index) {
+                  // 点击退出
+                  layer.close(index);
+                }
+                
+
+              })
+            }
+          } else {
+            extension.errorLogin() //状态不是200情况下
+          }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          var status = XMLHttpRequest.status;
+          if (textStatus == "error" && status == "401") {
+            extension.errorLogin(1)
+            return false
+          }
+          if (textStatus == "error" && status != "401") {
+            extension.error(1)
+            return false
+          }
+          if (textStatus == "timeout") {
+            extension.timeOut()
+          }
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

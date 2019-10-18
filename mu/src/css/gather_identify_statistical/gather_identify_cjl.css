@@ -1,0 +1,50 @@
+.layui-icon-search{
+    font-size:20px;
+    font-weight: bold;
+    position: absolute;
+    top:8px;
+    right:10px;
+    color: gray;
+}
+.layui-icon-search:hover{
+    color: #2F4056;
+    cursor:pointer;
+}
+#cjrDiv{
+    position: relative
+}
+/* div[id*=charts]{
+    height: 400px;
+    background: red;
+} */
+.parentBox{
+    margin-bottom:10px;
+}
+.layui-tab-content{
+    min-height: 650px;
+    width: 100%;
+}
+.layui-tab-item{
+    height: 100% !important;
+    width: 100%;
+}
+.layui-tab-item div{
+    /* float: left !important; */
+    /* height: 100% !important; */
+    /* margin: 10px 0; */
+}
+#charts_zhu{
+    width: 70%;
+    min-height: 500px;
+    height: 100%;
+}
+#charts_zhe{
+    width: 70%;
+    min-height: 500px;
+    height: 100%;
+}
+#charts_bing{
+    width: 100%;
+    min-height: 650px;
+    height: 100%;
+}
