@@ -31,8 +31,10 @@ namespace cc.web.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<TableResult> Post([FromBody] dynamic value)
         {
+            DataHandler dataHandler = new DataHandler();
+            return dataHandler.GetList<TableResult>();
         }
 
         // PUT api/values/5

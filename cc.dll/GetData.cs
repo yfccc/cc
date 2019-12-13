@@ -11,7 +11,7 @@ namespace cc.dll
     {
         public T GetList<T>() where T : TableResult, new()
         {
-            var connStr = "Host=10.2.1.97;Port=5432;Username=postgres;Password=123456;Database=irisNewAttend-100";
+            var connStr = "Host=192.168.197.110;Port=5432;Username=postgres;Password=123456;Database=irisNewAttend_liangbei";
             NpgsqlConnection conn = new NpgsqlConnection(connStr);
             conn.Open();
             NpgsqlDataAdapter adapter = new NpgsqlDataAdapter("select * from purview;", conn);
