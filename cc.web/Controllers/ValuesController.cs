@@ -18,8 +18,7 @@ namespace cc.web.Controllers
         [HttpGet]
         public ActionResult<TableResult> Get()
         {
-            DataHandler dataHandler = new DataHandler();
-            return dataHandler.GetList<TableResult>();
+            return new TableResult();
         }
 
         // GET api/values/5
@@ -31,10 +30,10 @@ namespace cc.web.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult<TableResult> Post([FromBody] dynamic value)
+        public ActionResult<TableResult> Post([FromBody] Purview purview)
         {
             DataHandler dataHandler = new DataHandler();
-            return dataHandler.GetList<TableResult>();
+            return dataHandler.GetList<TableResult>(purview);
         }
 
         // PUT api/values/5

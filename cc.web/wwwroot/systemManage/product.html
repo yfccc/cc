@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>产品管理</title>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+</head>
+<body>
+    <table id="show_list" lay-filter="show_list"></table>
+    <script src="../layui/layui.js"></script>
+    <script>
+        layui.use('table', function () {
+            var table = layui.table;
+
+            //第一个实例
+            table.render({
+                elem: '#show_list'
+                , url: 'http://localhost:5000/api/values'
+                , page: true //开启分页
+                , where: { "cc": "cc" }
+                , method: 'post'
+                , contentType: 'application/json;charset=UTF-8'
+                , cols: [[ //表头
+                    { field: 'purviewId', title: 'ID', minWidth: 110, sort: true, fixed: 'left' }
+                    , { field: 'purviewName', title: '用户名', minWidth: 200 }
+                    , { field: 'memo', title: '备注', minWidth: 120 }
+                ]]
+            });
+
+        });
+    </script>
+</body>
+</html>

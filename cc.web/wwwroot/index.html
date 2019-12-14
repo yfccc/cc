@@ -7,28 +7,87 @@
     <link rel="stylesheet" href="./layui/css/layui.css" media="all">
 </head>
 
-<body>
-    <table id="show_list" lay-filter="show_list"></table>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">拿来用</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <!-- <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="">控制台</a></li>
+                <li class="layui-nav-item"><a href="">商品管理</a></li>
+                <li class="layui-nav-item"><a href="">用户</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">邮件管理</a></dd>
+                        <dd><a href="">消息管理</a></dd>
+                        <dd><a href="">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul> -->
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="../images/jj.png" width="20" height="20">吃
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">退出登录</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="navMenu">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">所有商品</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">列表一</a></dd>
+                            <dd><a href="javascript:;">列表二</a></dd>
+                            <dd><a href="javascript:;">列表三</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">列表一</a></dd>
+                            <dd><a href="javascript:;">列表二</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">云市场</a></li>
+                    <li class="layui-nav-item"><a href="">发布商品</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div id="iframeContainer" style="padding: 15px;height: 500px;">
+                <iframe id="indexIframe" src="../home.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            © cc.com - 瞅瞅社区
+        </div>
+    </div>
+
     <script src="./layui/layui.js"></script>
     <script>
-        layui.use('table', function () {
-            var table = layui.table;
-
-            //第一个实例
-            table.render({
-                elem: '#show_list'
-                , url: 'http://localhost:5000/api/values'
-                , page: true //开启分页
-                , where:{"cc":"cc"}
-                , method: 'post'
-                , contentType: 'application/json;charset=UTF-8'
-                , cols: [[ //表头
-                    { field: 'purviewId', title: 'ID', minWidth: 110, sort: true, fixed: 'left' }
-                    , { field: 'purviewName', title: '用户名', minWidth: 200 }
-                    , { field: 'memo', title: '备注', minWidth: 120 }
-                ]]
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element,
+                $ = layui.$;
+            element.on('nav(navMenu)', function (data) {
+                $("#indexIframe").attr("src", "/systemManage/product.html")
             });
-
         });
     </script>
 </body>

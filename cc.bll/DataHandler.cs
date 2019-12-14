@@ -5,10 +5,10 @@ namespace cc.bll
 {
     public class DataHandler
     {
-        public T GetList<T>() where T : TableResult, new()
+        public T GetList<T>(Purview purview) where T : TableResult, new()
         {
             GetData getData = new GetData();
-            return getData.GetList<T>();
+            return getData.GetList<T>(purview);
         }
     }
 }
