@@ -11,15 +11,14 @@ namespace cc.dll
     {
         public T GetList<T>(Purview purview) where T : TableResult, new()
         {
-            var connStr = "Host=192.168.197.110;Port=5432;Username=postgres;Password=123456;Database=irisNewAttend_liangbei";
+            var connStr = "Host=127.0.0.1;Port=5432;Username=postgres;Password=123456;Database=cc_1";
             NpgsqlConnection conn = new NpgsqlConnection(connStr);
             conn.Open();
             purview.PageIndex = purview.PageIndex - 1;
-            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter($"select * from purview order by purview_id limit {purview.PageSize} offset {purview.PageIndex * purview.PageSize};", conn);
+            NpgsqlDataAdapter adapter = new NpgsqlDataAdapter($"select * from personbase order by id limit {purview.PageSize} offset {purview.PageIndex * purview.PageSize};", conn);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
-            NpgsqlCommand cmd = new NpgsqlCommand("select count(*) from purview;");
-            cmd.Connection = conn;
+            NpgsqlCommand cmd = new NpgsqlCommand("select count(*) from personbase;", conn);
             int total = 0;
             object executeResult = cmd.ExecuteScalar();
             if (executeResult != DBNull.Value)
@@ -35,9 +34,9 @@ namespace cc.dll
                 {
                     purviews.Add(new Purview()
                     {
-                        PurviewId = Convert.ToInt32(row["purview_id"]),
-                        Memo = row["memo"] == DBNull.Value ? "" : row["memo"].ToString(),
-                        PurviewName = row["purview_name"].ToString()
+                        PurviewId = Convert.ToInt32(row["id"]),
+                        Memo = row["person_name"] == DBNull.Value ? "" : row["person_name"].ToString(),
+                        PurviewName = row["phone_number"].ToString()
                     });
                 }
             }
